@@ -1,0 +1,71 @@
+import React, { useState, useEffect, useRef } from 'react';
+import './Chat.css';
+// import './animations.css';
+import Formulaire from './Formulaire';
+import Message from './Message';
+import { database } from './base'; // Importez la référence à la base de données
+
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
+const Chat = ({ messageid, pseudo }) => {
+  const [messages, setMessages] = useState({});
+  const messagesRef = useRef(null);
+
+  useEffect(() => {
+    const messagesRef = database.ref(`messages${messageid}`);
+    messagesRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        setMessages(data.messages);
+      }
+    });
+
+    return () => {
+      messagesRef.off();
+    };
+  }, [messageid]);
+
+  useEffect(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+
+  const addMessage = (message) => {
+    const newMessages = { ...messages };
+
+    newMessages[`message-${Date.now()}`] = message;
+
+    database.ref(`messages${messageid}`).update({ messages: newMessages });
+  };
+
+  const isUser = (messagePseudo) => messagePseudo === pseudo;
+
+
+  const messageList = Object.keys(messages).map((key) => (
+    // console.log(messages[key].pseudo =pseudo)
+    <CSSTransition timeout={200} classNames='fade' key={key}>
+      <Message
+        isUser={isUser}
+        message={messages[key].message}
+        pseudo={messages[key].pseudo}
+      />
+    </CSSTransition>
+    
+  ));
+
+
+  return (
+    <div className='box'>
+      <div>
+        <div className='messages' ref={messagesRef}>
+          <TransitionGroup className='message'>{messageList}</TransitionGroup>
+        </div>
+      </div>
+      <Formulaire length={140} pseudo={pseudo} addMessage={addMessage} />
+    </div>
+  );
+};
+
+export default Chat;

@@ -1,0 +1,133 @@
+.legend-user-panel {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    z-index: 1000;
+    max-height: calc(100vh - 200px); /* Hauteur maximale égale à la hauteur de la fenêtre moins 40px */
+    overflow-y: auto;
+  }
+  
+  .legend-user-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .legend-user-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  /* .legend-user-checkbox {
+    margin-right: 10px;
+  } */
+  
+  .legend-user-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .legend-user-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .legend-user-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .legend-user-label:hover .legend-user-text {
+    text-decoration: underline;
+  }
+
+  .legend-user-container {
+  display: flex;
+  flex-direction: row; /* Aligne les deux panneaux côte à côte */
+}
+
+.legend-user-panel {
+  margin-right: 20px; /* Marge entre les deux panneaux de légende */
+}
+
+/* Styles pour les titres des panneaux de légende */
+.legend-user-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Styles pour les éléments de légende individuels */
+.legend-user-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.legend-user-checkbox {
+  margin-right: 5px;
+}
+
+.legend-user-label {
+  display: flex;
+  align-items: center;
+}
+
+.legend-user-icon {
+  width: 32px; /* Ajustez la taille selon vos besoins */
+  height: 32px; /* Ajustez la taille selon vos besoins */
+  margin-right: 10px; /* Espacement entre l'icône et le texte */
+  vertical-align: middle; /* Alignement vertical au milieu */
+}
+
+.legend-user-text {
+  font-size: 14px; /* Taille du texte de légende */
+}
+
+.legend-user-panel {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .legend-user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f2f2f2;
+  }
+  
+  .toggle-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .legend-user-content {
+    padding: 0 10px;
+  }
+  
+  .legend-user-item {
+    margin-bottom: 5px;
+  }
+
+  img{
+    display: inline-block;
+    width: 32px; /* Ajustez la taille selon vos besoins */
+    height: 32px; /* Ajustez la taille selon vos besoins */
+    margin-right: 10px; /* Espacement entre l'icône et le texte */
+    vertical-align: middle; /* Alignement vertical au milieu */
+  }
+  
+  
