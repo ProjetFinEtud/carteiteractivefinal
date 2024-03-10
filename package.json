@@ -39,7 +39,7 @@
     "eject": "react-scripts eject"
   },
   "proxy":"https://masteregel.alwaysdata.net/server",
-  "homepage": "//masteregel.alwaysdata.net/client",
+  "homepage": "//masteregel.alwaysdata.net/",
   "eslintConfig": {
     "extends": [
       "react-app",
