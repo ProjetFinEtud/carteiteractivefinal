@@ -6,7 +6,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import LegendIconePanel from "./LegendIconePanel";
 import LegendUserPanel from "./LegendUserPanel";
 import { FullscreenControl } from "react-leaflet-fullscreen";
-import { MDBCardTitle, MDBCardImage } from "mdb-react-ui-kit";
+import { MDBCardTitle} from "mdb-react-ui-kit";
 import Modal from "react-bootstrap/Modal";
 import { useMapEvents } from "react-leaflet";
 import Avatar from "@mui/material/Avatar";
