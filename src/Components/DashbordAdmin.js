@@ -75,24 +75,24 @@ const Drawer = styled(MuiDrawer, {
 
 function Dashboard() {
   const [open, setOpen] = React.useState(true);
-  const [currentComponent, setCurrentComponent] = useState("profil"); // État pour contrôler la visibilité du composant
-  const [showComponentDomaine, setShowComponentDomaine] = useState(false); // État pour contrôler la visibilité du composant
-  const [showComponentMaster, setShowComponentMaster] = useState(false); // État pour contrôler la visibilité du composant
-  const [showComponentUser, setShowComponentUser] = useState(false); // État pour contrôler la visibilité du composant
+  const [currentComponent, setCurrentComponent] = useState("profil"); 
+  const [showComponentDomaine, setShowComponentDomaine] = useState(false); 
+  const [showComponentMaster, setShowComponentMaster] = useState(false); 
+  const [showComponentUser, setShowComponentUser] = useState(false); 
 
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  const [value, setValue] = useState("userdesactived"); // État pour gérer l'onglet actif
+  const [value, setValue] = useState("userdesactived"); 
 
   const handleChange = (event, newValue) => {
-    setValue(newValue); // Mettre à jour l'onglet actif
+    setValue(newValue);
   };
 
   const toggleComponent = (componentName) => {
     if (currentComponent !== componentName) {
-      setCurrentComponent(componentName); // Mettre à jour le composant actuellement affiché uniquement si ce n'est pas déjà le cas
+      setCurrentComponent(componentName); 
     }
   };
   return (
@@ -102,7 +102,7 @@ function Dashboard() {
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: "5px", // keep right padding when drawer closed
+              pr: "5px",
             }}
           >
             <IconButton

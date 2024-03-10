@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import CreatePoste from "./CreatePoste"; // Importer le composant pour la création de poste
-import Postes from "./Postes"; // Importer le composant pour la création de poste
-import UserInfo from "./UserInfo"; // Importer le composant pour la création de poste
-import ChangePassword from "./ChangePassword"; // Importer le composa
+import CreatePoste from "./CreatePoste"; 
+import Postes from "./Postes"; 
+import UserInfo from "./UserInfo"; 
+import ChangePassword from "./ChangePassword"; 
 import DeleteExstudent from "./DeleteExstudent"
 import ChangeLocalisation from "./ChangeLocalisation"
 const ProfilExStudent = () => {

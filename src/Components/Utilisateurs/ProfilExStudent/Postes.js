@@ -26,13 +26,13 @@ const Postes = () => {
     pos_debut: "",
     pos_fin: "",
   });
-  const [isEditing, setIsEditing] = useState(false); // Ajout d'un état pour vérifier si on est en mode édition ou ajout
+  const [isEditing, setIsEditing] = useState(false); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "/user/allPostes",
+          "/server/user/allPostes",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -93,18 +93,14 @@ const Postes = () => {
       newErrors.pos_nom = "";
     }
 
-    // Vous pouvez ajouter d'autres validations ici pour d'autres champs si nécessaire
-
     setErrors(newErrors);
 
-    // Le formulaire est valide s'il n'y a pas d'erreurs
     return Object.values(newErrors).every((error) => !error);
   };
 
   const handleValidation = async () => {
     try {
       if (!isEditing) {
-        // Si nous ne sommes pas en mode édition, nous validons le formulaire
         const isValid = validateForm();
         if (!isValid) {
           return;
@@ -113,7 +109,6 @@ const Postes = () => {
 
       const formData = new FormData();
 
-      // Ajoutez d'autres champs si nécessaire
       formData.append("pos_nom", modifiedPostes.pos_nom);
       formData.append("pos_description", modifiedPostes.pos_description);
       formData.append("pos_entreprise", modifiedPostes.pos_entreprise);
@@ -121,8 +116,8 @@ const Postes = () => {
       formData.append("pos_fin", modifiedPostes.pos_fin);
 
       const url = isEditing
-        ? "/Postes/updatePostess"
-        : "/Postes/addPostess";
+        ? "/server/Postes/updatePostess"
+        : "/server/Postes/addPostess";
       const response = await fetch(url, {
         method: isEditing ? "PUT" : "POST",
         headers: {
@@ -130,8 +125,6 @@ const Postes = () => {
         },
         body: formData,
       });
-
-      // Vous pouvez ajouter ici une logique supplémentaire après la soumission des données
 
       handleCloseModal();
     } catch (error) {
@@ -162,14 +155,14 @@ const Postes = () => {
       pos_debut: "",
       pos_fin: "",
     });
-    setIsEditing(false); // Réinitialisation du mode édition après la fermeture de la modal
+    setIsEditing(false); 
   };
 
   const handleEdit = (poste) => {
     setSelectedPostes(poste);
-    setModifiedPostes(poste); // Utilisez directement le poste sélectionné pour mettre à jour l'état modifiedPostes
+    setModifiedPostes(poste); 
     setShowModal(true);
-    setIsEditing(true); // Définition du mode édition à vrai
+    setIsEditing(true); 
   };
 
   const handleAdd = () => {
@@ -181,7 +174,7 @@ const Postes = () => {
       pos_fin: "",
     });
     setShowModal(true);
-    setIsEditing(false); // Définition du mode édition à faux lors de l'ajout
+    setIsEditing(false); 
   };
 
   const columns = [
@@ -189,7 +182,6 @@ const Postes = () => {
       dataField: "pos_nom",
       text: "Nom",
     },
-    // Ajoutez d'autres colonnes si nécessaire
     {
       dataField: "pos_description",
       text: "Description",

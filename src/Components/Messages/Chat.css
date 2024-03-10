@@ -1,7 +1,7 @@
-/* Importation de la police de caractères */
+
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-/* Réinitialisation des styles */
+
 *,
 *::before,
 *::after {
@@ -10,7 +10,6 @@
   padding: 0;
 }
 
-/* Utilisation de la police de caractères Roboto pour certains éléments */
 body,
 .box > *,
 textarea,
@@ -20,7 +19,6 @@ input {
   overflow: hidden;
 }
 
-/* Contenu principal */
 .connexionBox {
   background-color: #eceff1;
   display: flex;
@@ -34,7 +32,7 @@ input {
   font-size: 24px;
 }
 
-/* Styles pour les entrées de formulaire */
+
 .connexion > * {
   width: 100%;
 }
@@ -47,7 +45,7 @@ input {
   outline: none;
 }
 
-/* Conteneur principal */
+
 .box {
   margin: auto;
   display: flex;
@@ -64,7 +62,7 @@ input {
   width: 100%;
 }
 
-/* Zone d'affichage des messages */
+
 .messages {
   flex: 1 1 auto; 
   align-self: flex-end;
@@ -73,7 +71,7 @@ input {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Barre de défilement personnalisée */
+
 .messages::-webkit-scrollbar {
   width: 0.4em;
 }
@@ -82,7 +80,7 @@ input {
   background-color: #eceff1;
 }
 
-/* Styles des messages */
+
 .message {
   display: flex;
   flex-direction: column;
@@ -133,7 +131,7 @@ input {
   border-color: #2196F3 transparent;
 }
 
-/* Styles du formulaire */
+
 .form {
   align-self: flex-end;
 }
@@ -175,7 +173,7 @@ button:disabled {
   color: white;
 }
 
-/* Styles pour la page NotFound */
+
 .notFound {
   display: flex;
   justify-content: center;

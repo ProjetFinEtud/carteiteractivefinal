@@ -38,7 +38,7 @@ const reloadPage = () => {
 
   const confirmDelete = async () => {
     try {
-        const response = await fetch(`/user/userDeleteHisAccount`, {
+        const response = await fetch(`/server/user/userDeleteHisAccount`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

@@ -28,7 +28,6 @@ const ChangePassword = () => {
   };
 
   const handleChangePassword = async () => {
-    // Valider les champs du formulaire
     if (
       !formData.currentPassword ||
       !formData.newPassword ||
@@ -49,7 +48,7 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await fetch("/user/updatexspass", {
+      const response = await fetch("/server/user/updatexspass", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

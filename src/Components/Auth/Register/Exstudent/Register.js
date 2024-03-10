@@ -171,7 +171,7 @@ export default function Register() {
   const handleValidation = async (event) => {
     event.preventDefault();
     const apiResponse = await fetch(
-      "/auth/createxStudent",
+      "/server/auth/createxStudent",
       {
         method: "POST",
         headers: {
@@ -210,12 +210,12 @@ export default function Register() {
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Box
           sx={{
-            maxHeight: "90vh", // Hauteur maximale de 90% de la hauteur de la fenêtre
-            overflowY: "auto", // Ajouter un défilement vertical si nécessaire
+            maxHeight: "90vh", 
+            overflowY: "auto", 
             "&::-webkit-scrollbar": {
-              display: "none", // Masquer la barre de défilement sur les navigateurs basés sur Webkit (comme Chrome, Safari)
+              display: "none", 
             },
-            scrollbarWidth: "none", // Masquer la barre de défilement sur Firefox
+            scrollbarWidth: "none",
           }}
         >
           <Paper

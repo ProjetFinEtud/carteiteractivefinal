@@ -12,10 +12,9 @@ const UserInfo = () => {
   });
 
 
-  // Fonction pour récupérer les données de l'utilisateur depuis l'API
   const fetchUserData = async () => {
     try {
-      const response = await fetch("/user/infoAdmin", {
+      const response = await fetch("/server/user/infoAdmin", {
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
         },
@@ -41,9 +40,6 @@ const UserInfo = () => {
     fetchUserData();
   }, []);
 
-  // Fonction pour mettre à jour les données utilisateur modifiées et les envoyer à l'API
-
-  // Affichage d'un indicateur de chargement pendant le chargement des données
   if (loading) {
     return <CircularProgress />;
   }

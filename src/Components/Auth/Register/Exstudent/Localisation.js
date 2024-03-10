@@ -88,7 +88,6 @@ export default function Localisation({ onFieldChangeLon , onFieldChangeShow, onF
                 <Marker position={markerPosition} icon={customIcon}>
                   <Popup>
                     <div>{locationInfo}</div>
-                    {/* <div>Latitude: {markerPosition.lat}, Longitude: {markerPosition.lng}</div> */}
                   </Popup>
                 </Marker>
               )}

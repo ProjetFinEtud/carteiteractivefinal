@@ -70,7 +70,7 @@ const DemandeContact = () => {
         );
         return;
       }
-      // Mettre à jour les demandes après l'acceptation
+
       const updatedRequests = requests.map((request) =>
         request.con_id === id ? { ...request, con_etat: "Accepté" } : request
       );
@@ -103,7 +103,6 @@ const DemandeContact = () => {
         );
         return;
       }
-      // Mettre à jour les demandes après le rejet
       const updatedRequests = requests.map((request) =>
         request.con_id === id ? { ...request, con_etat: "Refusé" } : request
       );
@@ -136,7 +135,6 @@ const DemandeContact = () => {
         );
         return;
       }
-      // Mettre à jour les demandes après la suppression
       const updatedRequests = requests.filter(
         (request) => request.con_id !== id
       );

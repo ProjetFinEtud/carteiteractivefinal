@@ -4,7 +4,7 @@ import { useTable, useSortBy, useGlobalFilter } from "react-table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import * as XLSX from "xlsx";
-import { MDBCardTitle, MDBCardText, MDBCardImage } from "mdb-react-ui-kit";
+import { MDBCardTitle } from "mdb-react-ui-kit";
 import Avatar from "@mui/material/Avatar";
 
 const Active = () => {
@@ -17,7 +17,7 @@ const Active = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "/user/usersActived",
+          "/server/user/usersActived",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -39,7 +39,7 @@ const Active = () => {
         setData(jsonData);
 
         const responsePostes = await fetch(
-          "/user/allPrePostes",
+          "/server/user/allPrePostes",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -161,7 +161,6 @@ const Active = () => {
 
   return (
     <div className="container mt-5">
-      {/* <h2>Liste des utilisateurs désactivés</h2> */}
       <div>
         <input
           value={globalFilter || ""}

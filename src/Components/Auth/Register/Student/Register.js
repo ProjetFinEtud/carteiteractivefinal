@@ -53,27 +53,24 @@ export default function Register() {
       newErrors.nom = "";
     }
 
-    // Valider le champ Prénom
     if (!formData.prenom) {
       newErrors.prenom = "Veuillez entrer votre prénom";
     } else {
       newErrors.prenom = "";
     }
 
-    // Valider le champ Email
     if (!formData.email) {
       newErrors.email = "Veuillez entrer votre email";
     } else {
       newErrors.email = "";
     }
-    // Valider le champ Email
+
     if (!formData.email || !formData.email.includes("@etudiant.univ")) {
       newErrors.email = "Veuillez entrer votre email étudiant";
     } else {
       newErrors.email = "";
     }
 
-    // Valider le champ Diplome
     if (!formData.master) {
       newErrors.master = "Veuillez sélectionné un diplôme";
     } else {
@@ -90,7 +87,6 @@ export default function Register() {
     }
     setErrors(newErrors);
 
-    // Le formulaire est valide s'il n'y a pas d'erreurs
     return Object.values(newErrors).every((error) => !error);
   };
 
@@ -100,7 +96,7 @@ export default function Register() {
     const fetchData = async () => {
       try {
         const responseMaster = await fetch(
-          "/auth/allMaster"
+          "/server/auth/allMaster"
         );
         const jsonData = await responseMaster.json();
         const newData = jsonData.columns.map((item) => ({
@@ -120,7 +116,6 @@ export default function Register() {
   }, []);
 
   const handleFieldChange = (field, value) => {
-    //const sanitizedValue = value.trim();
     setFormData({
       ...formData,
       [field]: value,
@@ -137,7 +132,7 @@ export default function Register() {
       return;
     } else {
       const apiResponse = await fetch(
-        "/auth/createstudent",
+        "/server/auth/createstudent",
         {
           method: "POST",
           headers: {
@@ -148,7 +143,6 @@ export default function Register() {
       );
 
       if (!apiResponse.ok) {
-        // Si le statut n'est pas OK (200)
         if (apiResponse.status === 400) {
           setErrors((prevData) => ({
             ...prevData,

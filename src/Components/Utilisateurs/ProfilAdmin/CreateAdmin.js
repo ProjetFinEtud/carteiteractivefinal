@@ -21,15 +21,13 @@ const CreateAdmin = () => {
   };
 
   const handleCreateAdmin = async () => {
-    // Valider les champs du formulaire
     if (!formData.firstName || !formData.lastName) {
       setError("Veuillez remplir tous les champs.");
       return;
     }
 
     try {
-      // Envoyer les données au serveur pour créer un nouvel administrateur
-      const response = await fetch("/user/createadmin", {
+      const response = await fetch("/server/user/createadmin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +41,6 @@ const CreateAdmin = () => {
         throw new Error(errorMessage);
       } else {
         setSucess("Nouvel administrateur créé avec succès !");
-        // Réinitialiser les champs du formulaire après la création réussie
         setFormData({
           firstName: "",
           lastName: "",

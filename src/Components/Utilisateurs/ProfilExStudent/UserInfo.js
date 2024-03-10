@@ -3,10 +3,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useNavigate } from "react-router-dom";
 
 const UserInfo = () => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userData, setUserData] = useState({
@@ -16,12 +14,11 @@ const UserInfo = () => {
     exs_email: "",
     exs_description: "",
   });
-  const [newAvatar, setNewAvatar] = useState(null); // Nouvelle image sélectionnée
+  const [newAvatar, setNewAvatar] = useState(null); 
 
-  // Fonction pour récupérer les données de l'utilisateur depuis l'API
   const fetchUserData = async () => {
     try {
-      const response = await fetch("/user/info", {
+      const response = await fetch("/server/user/info", {
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
         },
@@ -46,17 +43,16 @@ const UserInfo = () => {
     fetchUserData();
   }, []);
 
-  // Fonction pour mettre à jour les données utilisateur modifiées et les envoyer à l'API
   const handleSave = async () => {
     try {
       const formData = new FormData();
-      formData.append("exs_photo", newAvatar); // Ajouter la nouvelle image au FormData
+      formData.append("exs_photo", newAvatar); 
       formData.append("exs_nom", userData.exs_nom);
       formData.append("exs_prenom", userData.exs_prenom);
       formData.append("exs_email", userData.exs_email);
       formData.append("exs_description", userData.exs_description);
 
-      const response = await fetch("/user/updateinfo", {
+      const response = await fetch("/server/user/updateinfo", {
         method: "PUT",
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
@@ -76,13 +72,11 @@ const UserInfo = () => {
     }
   };
 
-  // Fonction pour gérer le chargement de la nouvelle image sélectionnée
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setNewAvatar(file);
   };
 
-  // Affichage d'un indicateur de chargement pendant le chargement des données
   if (loading) {
     return <CircularProgress />;
   }

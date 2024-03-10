@@ -25,7 +25,7 @@ export default function ForgotPassword() {
       return;
     }
     try {
-      const response = await fetch("/auth/resetpassword", {
+      const response = await fetch("/server/auth/resetpassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -6,8 +6,6 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import {
   MDBCardTitle,
-  MDBCardText,
-  MDBCardImage,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import Avatar from "@mui/material/Avatar";
@@ -31,7 +29,7 @@ const Desactive = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "/user/userDesactived",
+        "/server/user/userDesactived",
         {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
@@ -52,7 +50,7 @@ const Desactive = () => {
       setData(jsonData);
 
       const responsePostes = await fetch(
-        "/user/allPrePostes",
+        "/server/user/allPrePostes",
         {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
@@ -92,7 +90,7 @@ const Desactive = () => {
     console.log(id);
     console.log(type);
     try {
-      const response = await fetch(`/user/activate`, {
+      const response = await fetch(`/server/user/activate`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -140,7 +138,7 @@ const Desactive = () => {
     const user_id = selectedStudentId;
     const user_type = selectedType;
     try {
-      const response = await fetch(`/user/delete`, {
+      const response = await fetch(`/server/user/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -187,7 +185,7 @@ const Desactive = () => {
       console.log(userPseudos);
 
       const response = await fetch(
-        `/user/activateUsers`,
+        `/server/user/activateUsers`,
         {
           method: "PUT",
           headers: {
@@ -206,7 +204,6 @@ const Desactive = () => {
         return;
       }
       setGlobalFilter('');
-      // Mettre à jour l'état data en supprimant les utilisateurs activés
       const newData = data.filter(
         (student) =>
           !selectedStudents.map((user) => user.cpt_login).includes(student.cpt_login)
@@ -343,7 +340,6 @@ const Desactive = () => {
 
   return (
     <div className="container mt-5">
-      {/* <h2>Liste des utilisateurs désactivés</h2> */}
       <div>
         <input
           value={globalFilter || ""}

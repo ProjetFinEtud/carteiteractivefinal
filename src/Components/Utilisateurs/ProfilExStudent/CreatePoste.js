@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
 
 const Poste = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nomPoste: "",
     descriptionPoste: "",
@@ -26,15 +24,13 @@ const Poste = () => {
   };
 
   const handleCreatePoste = async () => {
-    // Valider les champs du formulaire
     if (!formData.nomPoste || !formData.descriptionPoste || !formData.nomEntreprise || !formData.dateDebut || !formData.dateFin) {
       setError("Veuillez remplir tous les champs.");
       return;
     }
 
-    // Appeler l'API pour créer le poste
     try {
-      const response = await fetch("/user/createposte", {
+      const response = await fetch("/server/user/createposte", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,8 +46,7 @@ const Poste = () => {
 
       setSucess("Votre poste a été ajouter avec succès")
 
-      // Poste créé avec succès
-      window.location.reload(); // Remplacer "/success" par l'URL de la page de succès
+      window.location.reload(); 
     } catch (error) {
       setError(error.message);
     }

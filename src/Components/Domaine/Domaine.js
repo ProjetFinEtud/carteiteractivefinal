@@ -23,7 +23,7 @@ const Domaine = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "/domaine/alldomaines",
+          "/server/domaine/alldomaines",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -100,7 +100,6 @@ const Domaine = () => {
 
     setErrors(newErrors);
 
-    // Le formulaire est valide s'il n'y a pas d'erreurs
     return Object.values(newErrors).every((error) => !error);
   };
 
@@ -130,8 +129,8 @@ const Domaine = () => {
       }
 
       const url = isEditing
-        ? "/domaine/updatedomaines"
-        : "/domaine/adddomaines";
+        ? "/server/domaine/updatedomaines"
+        : "/server/domaine/adddomaines";
      const response =  await fetch(url, {
         method: isEditing ? "PUT" : "POST",
         headers: {
@@ -181,20 +180,20 @@ const Domaine = () => {
     setShowModal(false);
     setSelectedDomaine(null);
     setModifiedDomaine(null);
-    setIsEditing(false); // Réinitialisation du mode édition après la fermeture de la modal
+    setIsEditing(false);
   };
 
   const handleEdit = (domaine) => {
     setSelectedDomaine(domaine);
     setModifiedDomaine({ ...domaine });
     setShowModal(true);
-    setIsEditing(true); // Définition du mode édition à vrai
+    setIsEditing(true); 
   };
 
   const handleAdd = () => {
     setModifiedDomaine({ dom_nom: "", dom_id: "" });
     setShowModal(true);
-    setIsEditing(false); // Définition du mode édition à faux lors de l'ajout
+    setIsEditing(false); 
   };
 
   const columns = [

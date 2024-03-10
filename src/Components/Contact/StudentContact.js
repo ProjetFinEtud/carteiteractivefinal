@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import Button from "react-bootstrap/Button";
-import Chat from "../Messages/Chat"; // Importer le composant Chat
+import Chat from "../Messages/Chat"; 
 
 const StudentContact = () => {
   const [requests, setRequests] = useState([]);

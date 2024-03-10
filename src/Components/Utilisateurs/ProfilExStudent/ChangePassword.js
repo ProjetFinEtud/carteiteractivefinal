@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
@@ -41,7 +39,7 @@ const ChangePassword = () => {
 
 
     try {
-      const response = await fetch("/user/updatexspass", {
+      const response = await fetch("/server/user/updatexspass", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

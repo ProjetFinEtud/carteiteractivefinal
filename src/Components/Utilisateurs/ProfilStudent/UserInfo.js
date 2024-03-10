@@ -11,10 +11,9 @@ const UserInfo = () => {
     stu_email: "",
   });
 
-  // Fonction pour récupérer les données de l'utilisateur depuis l'API
   const fetchUserData = async () => {
     try {
-      const response = await fetch("/user/infoStudent", {
+      const response = await fetch("/server/user/infoStudent", {
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
         },

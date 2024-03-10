@@ -3,7 +3,7 @@ import './Chat.css';
 // import './animations.css';
 import Formulaire from './Formulaire';
 import Message from './Message';
-import { database } from './base'; // Importez la référence à la base de données
+import { database } from './base'; 
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -44,7 +44,6 @@ const Chat = ({ messageid, pseudo }) => {
 
 
   const messageList = Object.keys(messages).map((key) => (
-    // console.log(messages[key].pseudo =pseudo)
     <CSSTransition timeout={200} classNames='fade' key={key}>
       <Message
         isUser={isUser}

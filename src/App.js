@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Register from "./Components/Register";
 import ForgotPassword from "./Components/Auth/ForgotPassword/ForgotPassword";
 import Connexion from "./Components/Auth/Login/Login";
-import StuContact from "./Components/Contact/StudentContact";
 import Map from "./Components/Carte/Map";
 import UserDesactived from "./Components/Utilisateurs/Desactive";
 import UserActived from "./Components/Utilisateurs/Active";

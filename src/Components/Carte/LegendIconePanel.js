@@ -77,7 +77,7 @@ function LegendIconePanel({ domaines,postes, onFilterDomaineChange,onFilterPoste
       />
       <FilterGroup
         title="Postes"
-        items={postes} // Ajoutez les postes selon votre besoin
+        items={postes} 
         checkedValues={checkedPoste}
         onFilterChange={handlePosteChange}
       />

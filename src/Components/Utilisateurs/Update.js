@@ -54,12 +54,10 @@ export default function Update() {
 
     setErrors(newErrors);
 
-    // Le formulaire est valide s'il n'y a pas d'erreurs
     return Object.values(newErrors).every((error) => !error);
   };
 
   const handleFieldChange = (field, value) => {
-    //const sanitizedValue = value.trim();
     setFormData({
       ...formData,
       [field]: value,
@@ -68,14 +66,13 @@ export default function Update() {
   };
 
   const handleValidation = async () => {
-    // Ajoutez ici la logique de validation ou envoyez les données au serveur
     const formIsValid = validateForm();
     console.log(formData)
     if (!formIsValid) {
       console.log("Le formulaire n'est pas valide");
       return;
     } else {
-      const apiResponse = await fetch("/auth/updatepass", {
+      const apiResponse = await fetch("/server/auth/updatepass", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +81,6 @@ export default function Update() {
       });
 
       if (!apiResponse.ok) {
-        // Si le statut n'est pas OK (200)
         if (apiResponse.status === 400) {
           console.error("Erreur de validation des données côté serveur");
         } else if (apiResponse.status === 401) {

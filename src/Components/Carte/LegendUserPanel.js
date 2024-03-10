@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './LegendUserPanel.css'; // Import du fichier CSS pour le style
+import './LegendUserPanel.css'; 
 
 function LegendUserPanel({ title, items, onUserClick }) {
   const [isOpen, setIsOpen] = useState(true);

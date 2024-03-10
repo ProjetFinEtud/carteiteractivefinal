@@ -11,10 +11,10 @@ const firebaseConfig = {
   measurementId: "G-XD6KL5JD2S"
 };
 
-// Initialisation de l'application Firebasey
+
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-// Récupération de l'instance de la base de données
+
 const database = firebaseApp.database();
 
 export { firebaseApp, database };
