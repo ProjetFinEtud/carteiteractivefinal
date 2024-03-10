@@ -31,7 +31,7 @@ function App() {
     const fetchData = async () => {
       try {
         const responseUsers = await fetch(
-          "/user/usersExstudentActived",
+          "/server/user/usersExstudentActived",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -66,7 +66,7 @@ function App() {
         setData(newData);
         setFilteredUsers(newData);
         const responseDomaines = await fetch(
-          "/user/allDomaines",
+          "/server/user/allDomaines",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -88,7 +88,7 @@ function App() {
         }));
         setDataDomaine(newDataDomaine);
         const responsePostes = await fetch(
-          "/user/allPrePostes",
+          "/server/user/allPrePostes",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -165,7 +165,7 @@ function App() {
   const handleSendAsk = async (id) => {
     const exs_id = id;
     try {
-      const url = "/user/sendask";
+      const url = "/server/user/sendask";
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -267,7 +267,7 @@ function App() {
             position={[selectedMarkerPosition.lat, selectedMarkerPosition.lon]}
             icon={
               new L.Icon({
-                iconUrl: "/images/" + selectedMarkerPosition.icone, // Utilisez l'URL de l'icône de selectedMarkerPosition
+                iconUrl: "/images/" + selectedMarkerPosition.icone, 
                 iconSize: [50, 50],
                 iconAnchor: [32, 32],
                 popupAnchor: [0, -32],
