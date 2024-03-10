@@ -28,21 +28,21 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Outlet />}>
             <Route index element={<Acceuil />} />
-            <Route path="forgotpassword" element={<ForgotPassword />} />
-            <Route path="register" element={<Register />} />
-            <Route path="connexion" element={<Connexion />} />
-            <Route path="carte" element={<Map />} />
-            <Route path="userdesactived" element={<UserDesactived />} />
-            <Route path="useractived" element={<UserActived />} />
-            <Route path="domaine" element={<Domaine />} />
-            <Route path="updatepass" element={<UpdatePass />} />
-            <Route path="master" element={<Master />} />
-            <Route path="dashbordAdmin" element={<DashboardAdmin />} />
-            <Route path="dashbordExstudent" element={<DashboardExStudent />} />
-            <Route path="dashbordStudent" element={<DashboardStudent />} />
-            <Route path="politique" element={<Politique />} />
-            <Route path="logout" element={<Logout />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="#/forgotpassword" element={<ForgotPassword />} />
+            <Route path="#/register" element={<Register />} />
+            <Route path="#/connexion" element={<Connexion />} />
+            <Route path="#/carte" element={<Map />} />
+            <Route path="#/userdesactived" element={<UserDesactived />} />
+            <Route path="#/useractived" element={<UserActived />} />
+            <Route path="#/domaine" element={<Domaine />} />
+            <Route path="#/updatepass" element={<UpdatePass />} />
+            <Route path="#/master" element={<Master />} />
+            <Route path="#/dashbordAdmin" element={<DashboardAdmin />} />
+            <Route path="#/dashbordExstudent" element={<DashboardExStudent />} />
+            <Route path="#/dashbordStudent" element={<DashboardStudent />} />
+            <Route path="#/politique" element={<Politique />} />
+            <Route path="#/logout" element={<Logout />} />
+            <Route path="#/*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
