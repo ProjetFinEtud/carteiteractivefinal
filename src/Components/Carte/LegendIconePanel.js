@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./LegendIconePanel.css"; // Import du fichier CSS pour le style
+import "./LegendIconePanel.css"; 
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 
 function FilterGroup({ title, items, checkedValues, onFilterChange }) {
