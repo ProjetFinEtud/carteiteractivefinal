@@ -87,7 +87,7 @@ export default function Login() {
         if (apiResponse.status === 201) {
           navigate("/updatepass");
         } else {
-          navigate("/carte");
+          navigate("/dashbordAdmin");
           //window.location.reload();
         }
       }
