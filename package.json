@@ -15,7 +15,6 @@
     "jwt-decode": "^4.0.0",
     "mdb-react-ui-kit": "^7.2.0",
     "particles-bg": "^2.5.5",
-    "re-base": "^4.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.0",
     "react-bootstrap-table-next": "^4.0.3",
