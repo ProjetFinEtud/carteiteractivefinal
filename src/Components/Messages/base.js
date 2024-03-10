@@ -1,15 +1,14 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
-console.log(`${process.env.REACT_APP_AUTHDOMAINEFIREBASE}`)
 const firebaseConfig = {
-  apiKey:`${process.env.REACT_APP_APIKEYFIREBASE}`,
-  authDomain:`${process.env.REACT_APP_AUTHDOMAINEFIREBASE}`,
-  projectId: `${process.env.REACT_APP_PROJECTIDFIREBASE}`,
-  databaseURL:`${process.env.REACT_APP_DATABASEFIREBASE}`,
-  storageBucket:`${process.env.REACT_APP_STORAGEBUCKETFIREBASE}`,
-  messagingSenderId: `${process.env.REACT_APP_MESSAGINSENDERIDFIREBASE}`,
-  appId:`${process.env.REACT_APP_APPIDFIREBASE}`,
-  measurementId: `${process.env.REACT_APP_MESUREMENTIDFIREBASE}`
+  apiKey: "AIzaSyD-oOSNHydT6OJhYv3eGl1VaAmfAVOWslo",
+  authDomain: "chategel-cb469.firebaseapp.com",
+  projectId: "chategel-cb469",
+  databaseURL: "https://chat-egel-default-rtdb.europe-west1.firebasedatabase.app/",
+  storageBucket: "chategel-cb469.appspot.com",
+  messagingSenderId: "53024394820",
+  appId: "1:53024394820:web:31dbf637cb966b15633611",
+  measurementId: "G-XD6KL5JD2S"
 };
 
 // Initialisation de l'application Firebasey
