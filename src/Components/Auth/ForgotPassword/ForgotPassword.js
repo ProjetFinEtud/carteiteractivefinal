@@ -33,9 +33,8 @@ export default function ForgotPassword() {
         body: JSON.stringify({ email }),
       });
 
-     if (!response.ok) {
-      
-        if(response.status === 400) {
+      if (!response.ok) {
+        if (response.status === 400) {
           setError("Veuillez saisir votre adresse email d'inscription.");
         } else {
           setError("Une erreur s'est produite. Veuillez réessayer plus tard.");
@@ -45,7 +44,7 @@ export default function ForgotPassword() {
         setTimeout(() => {
           navigate("/");
         }, 2000);
-        navigate("/connexion")
+        navigate("/connexion");
       }
     } catch (error) {
       setError(error.message);
@@ -65,11 +64,12 @@ export default function ForgotPassword() {
           </Typography>
           <Typography component="h1" variant="h5" align="center">
             {success && (
-              <Form.Text className="text-success">Un e-mail de réinitialisation de mot de passe a été envoyé à {email}.</Form.Text>
+              <Form.Text className="text-success">
+                Un e-mail de réinitialisation de mot de passe a été envoyé à{" "}
+                {email}.
+              </Form.Text>
             )}
-            {error && (
-              <Form.Text className="text-danger">{error}</Form.Text>
-            )}
+            {error && <Form.Text className="text-danger">{error}</Form.Text>}
           </Typography>
 
           <Grid container spacing={3}>
