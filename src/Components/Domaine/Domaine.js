@@ -305,10 +305,10 @@ const Domaine = () => {
               <Modal.Title>Icone</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            {console.log("/images/" + selectedImage)}
+            {console.log("server/images/" + selectedImage)}
               {selectedImage && (
                 <img
-                  src={"/images/" + selectedImage}
+                  src={"server/images/" + selectedImage}
                   
                   alt="icone du domaine"
                   style={{ maxWidth: "100%" }}
