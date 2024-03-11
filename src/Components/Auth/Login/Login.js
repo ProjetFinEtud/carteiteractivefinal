@@ -11,6 +11,7 @@ import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import Box from "@mui/material/Box";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -106,8 +107,15 @@ export default function Login() {
           variant="outlined"
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
         >
+         <Box display="flex" justifyContent="center" mb={3}>
+            <img src="./logo.png" alt="Logo" className="logo-img" />
+          </Box>
+
           <Typography component="h1" variant="h4" align="center">
-            <em>Connectez vous à la carte itéractive</em>
+            <em>Bienvenue sur notre Carte Interactive! 👋🏻</em>
+          </Typography>
+          <Typography variant="subtitle1" align="center">
+            Veuillez vous connecter à votre compte et commencer l’aventure
           </Typography>
           <Typography component="h1" variant="h5" align="center">
             <Form.Text className="text-danger">{errors.validation}</Form.Text>

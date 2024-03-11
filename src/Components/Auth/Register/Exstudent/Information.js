@@ -40,7 +40,7 @@ export default function Information({ onFieldChange, onFieldChangeShow, formData
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Information
+        Informations
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>

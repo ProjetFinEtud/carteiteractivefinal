@@ -15,7 +15,7 @@ import Poste from "./Poste";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Information from "./Information";
-const steps = ["Information", "Activité", "Localisation", "Poste", "Résumé"];
+const steps = ["Informations", "Activité", "Localisation", "Poste", "Résumé"];
 
 export default function Register() {
   const navigate = useNavigate();

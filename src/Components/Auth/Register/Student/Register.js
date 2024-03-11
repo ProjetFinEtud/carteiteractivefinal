@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+
 export default function Register() {
   const navigate = useNavigate();
   const [validationSuccess, setValidationSuccess] = useState(false);
@@ -95,9 +97,7 @@ export default function Register() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseMaster = await fetch(
-          "/server/auth/allMaster"
-        );
+        const responseMaster = await fetch("/server/auth/allMaster");
         const jsonData = await responseMaster.json();
         const newData = jsonData.columns.map((item) => ({
           mas_id: item.mas_id,
@@ -131,16 +131,13 @@ export default function Register() {
     if (!formIsValid) {
       return;
     } else {
-      const apiResponse = await fetch(
-        "/server/auth/createstudent",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const apiResponse = await fetch("/server/auth/createstudent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (!apiResponse.ok) {
         if (apiResponse.status === 400) {
@@ -188,9 +185,16 @@ export default function Register() {
           variant="outlined"
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
         >
+          <Box display="flex" justifyContent="center" mb={3}>
+            <img src="./logo.png" alt="Logo" className="logo-img" />
+          </Box>
           <Typography component="h1" variant="h4" align="center">
-            <em>Rejoingnez nous</em>
+            <em>L’aventure commence ici 🚀</em>
           </Typography>
+          <Typography variant="subtitle1" align="center">
+            Rejoignez-nous !
+          </Typography>
+
           <Typography component="h1" variant="h5" align="center">
             <Form.Text className="text-danger">{errors.validation}</Form.Text>
             {validationSuccess && (
