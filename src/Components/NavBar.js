@@ -72,7 +72,7 @@ function NavBar() {
               <HomeIcon />
             </IconButton>
             <Typography variant="body1" color="inherit" sx={{ marginLeft: '10px' }}>
-              Dashbord
+              Votre compte
             </Typography>
             <IconButton color="inherit" component={Link} to={`/${pageAccess}`}>
               <AccountCircleIcon />
