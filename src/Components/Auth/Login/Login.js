@@ -88,7 +88,7 @@ export default function Login() {
           navigate("/updatepass");
         } else {
           navigate("/carte");
-          //window.location.reload();
+          window.location.reload();
         }
       }
     }
