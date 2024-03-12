@@ -7,6 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 const UserInfo = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
   const [userData, setUserData] = useState({
     exs_nom: "",
     exs_prenom: "",
@@ -14,39 +15,42 @@ const UserInfo = () => {
     exs_email: "",
     exs_description: "",
   });
-  const [newAvatar, setNewAvatar] = useState(null); 
-
-  const fetchUserData = async () => {
-    try {
-      const response = await fetch("/server/user/info", {
-        headers: {
-          accessToken: sessionStorage.getItem("accessToken"),
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Erreur lors de la récupération des données");
-      }
-      const jsonData = await response.json();
-      setUserData(jsonData);
-    } catch (error) {
-      console.error(
-        "Erreur lors de la récupération des données:",
-        error.message
-      );
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [newAvatar, setNewAvatar] = useState(null);
 
   useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch("/server/user/info", {
+          headers: {
+            accessToken: sessionStorage.getItem("accessToken"),
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des données");
+        }
+        const jsonData = await response.json();
+        setUserData(jsonData);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des données:",
+          error.message
+        );
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchUserData();
   }, []);
 
   const handleSave = async () => {
     try {
+      if (!userData.exs_nom || !userData.exs_prenom || !userData.exs_email) {
+        throw new Error("Veuillez remplir tous les champs");
+      }
+
       const formData = new FormData();
-      formData.append("exs_photo", newAvatar); 
+      formData.append("exs_photo", newAvatar);
       formData.append("exs_nom", userData.exs_nom);
       formData.append("exs_prenom", userData.exs_prenom);
       formData.append("exs_email", userData.exs_email);
@@ -62,7 +66,8 @@ const UserInfo = () => {
       if (!response.ok) {
         throw new Error("Erreur lors de la mise à jour des données");
       }
-      alert("Données mises à jour avec succès !");
+      setError(null); // Réinitialiser l'erreur après la mise à jour réussie
+      setSuccessMessage("Données mises à jour avec succès !");
     } catch (error) {
       console.error(
         "Erreur lors de la mise à jour des données:",
@@ -77,12 +82,14 @@ const UserInfo = () => {
     setNewAvatar(file);
   };
 
+  const handleInputChange = (field, value) => {
+    setUserData({ ...userData, [field]: value });
+    setError(null); // Effacer l'erreur lorsqu'un champ est modifié
+    setSuccessMessage(null); // Effacer le message de succès lorsqu'un champ est modifié
+  };
+
   if (loading) {
     return <CircularProgress />;
-  }
-
-  if (error) {
-    return <div>Erreur: {error}</div>;
   }
 
   return (
@@ -108,39 +115,35 @@ const UserInfo = () => {
       <TextField
         label="Nom"
         value={userData.exs_nom}
-        onChange={(e) => setUserData({ ...userData, exs_nom: e.target.value })}
+        onChange={(e) => handleInputChange("exs_nom", e.target.value)}
         fullWidth
         margin="normal"
       />
       <TextField
         label="Prénom"
         value={userData.exs_prenom}
-        onChange={(e) =>
-          setUserData({ ...userData, exs_prenom: e.target.value })
-        }
+        onChange={(e) => handleInputChange("exs_prenom", e.target.value)}
         fullWidth
         margin="normal"
       />
       <TextField
         label="Adresse email"
         value={userData.exs_email}
-        onChange={(e) =>
-          setUserData({ ...userData, exs_email: e.target.value })
-        }
+        onChange={(e) => handleInputChange("exs_email", e.target.value)}
         fullWidth
         margin="normal"
       />
       <TextField
         label="Description"
         value={userData.exs_description}
-        onChange={(e) =>
-          setUserData({ ...userData, exs_description: e.target.value })
-        }
+        onChange={(e) => handleInputChange("exs_description", e.target.value)}
         fullWidth
         margin="normal"
         multiline
         rows={4}
       />
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       <Button variant="contained" color="primary" onClick={handleSave}>
         Enregistrer
       </Button>
