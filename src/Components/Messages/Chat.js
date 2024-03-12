@@ -4,7 +4,7 @@ import './Chat.css';
 import Formulaire from './Formulaire';
 import Message from './Message';
 import { database } from './base'; 
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const Chat = ({ messageid, pseudo, changePage }) => {
@@ -61,7 +61,7 @@ const Chat = ({ messageid, pseudo, changePage }) => {
 
   return (
     <>
-    <button onClick={handleBack}></button>
+     <IconButton onClick={handleBack} aria-label="Retour à la demande de contact"></IconButton>
     <div className='box'>
       <div>
         <div className='messages' ref={messagesRef}>

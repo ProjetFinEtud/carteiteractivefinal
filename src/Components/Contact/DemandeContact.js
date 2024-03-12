@@ -6,7 +6,7 @@ const DemandeContact = () => {
   const [requests, setRequests] = useState([]);
   const [selectedPseudo, setSelectedPseudo] = useState(null);
   const [selectedMessageId, setSelectedMessageId] = useState(null);
-
+  const [bol, setBol] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,7 +50,13 @@ const DemandeContact = () => {
   const handleOpenChat = (msg_id, pseudo) => {
     setSelectedMessageId(msg_id);
     setSelectedPseudo(pseudo);
+    changePage(true)
   };
+
+  const changePage= (bolChange) => {
+    setBol(bolChange)
+    console.log(bol)
+  }
   
 
   const handleAcceptRequest = async (id) => {
@@ -213,8 +219,8 @@ const DemandeContact = () => {
 
   return (
     <div className="container mt-5">
-      {selectedMessageId ? (
-        <Chat messageid={selectedMessageId} pseudo={selectedPseudo} />
+      {bol ? (
+        <Chat messageid={selectedMessageId} pseudo={selectedPseudo} changePage={changePage} />
       ) : (
         <BootstrapTable
           keyField="con_id"
