@@ -29,7 +29,7 @@ export default function Information({ onFieldChange, onFieldChangeShow, formData
     var value = event.target.value;
     setEmail(value);
     setErrors({ ...errors, email: "" });
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/
     if(regex.test(email)){
       value = ""  
     }
