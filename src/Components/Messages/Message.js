@@ -9,7 +9,10 @@ const Message = ({ pseudo, message, isUser }) => {
         <p>{message}</p>
       ) : (
         <p>
-          <strong>{pseudo}: </strong>
+          <strong>{pseudo.match(/^(\w+)\.(\w+)(\d{4})$/)
+              .slice(1, 3)
+              .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+              .join(" ")}: </strong>
           {message}
         </p>
       )}
