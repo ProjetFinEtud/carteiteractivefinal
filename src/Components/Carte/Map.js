@@ -229,7 +229,7 @@ function App() {
         <MarkerClusterGroup chunkedLoading>
           {filteredUsers.map((item) => {
             const customIcon = new L.Icon({
-              iconUrl: "./upload/" + item.icone,
+              iconUrl: "server/images/" + item.icone,
               iconSize: [38, 38],
               iconAnchor: [32, 32],
               popupAnchor: [0, -32],
@@ -307,7 +307,7 @@ function App() {
             <div className="d-flex text-black">
               <div className="flex-shrink-0">
                 <Avatar
-                  src={"./upload/" + selectedStudent.photo}
+                  src={"server/images/" + selectedStudent.photo}
                   alt="Avatar"
                   className="rounded-circle"
                   style={{ width: 150, height: 150, objectFit: "cover" }}
