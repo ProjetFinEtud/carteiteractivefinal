@@ -94,7 +94,7 @@ const StudentContact = () => {
               Ouvrir le chat
             </Button>
             <Button variant="danger" onClick={() => handleDelete(row.con_id)}>
-              Supprimer l'utilisateur
+              Supprimer le contact
             </Button>
           </div>
         ) : (
