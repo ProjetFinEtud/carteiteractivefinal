@@ -26,7 +26,7 @@ function LegendUserPanel({ title, items, onUserClick }) {
             <div key={index} className="legend-user-item" onClick={() => handleUserClick(item)}>
               <label htmlFor={`legend-user-checkbox-${index}`} className="legend-user-label">
                 <div className="legend-user-icon" style={{ backgroundColor: item.color }}>
-                  <img src={"/images/" + item.icone} alt={""} />
+                  <img src={"server/images/" + item.icone} alt={""} />
                 </div>
                 <div className="legend-user-text">{item.nom + " " + item.prenom}</div>
               </label>

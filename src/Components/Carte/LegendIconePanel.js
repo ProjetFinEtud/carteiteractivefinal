@@ -36,7 +36,7 @@ function FilterGroup({ title, items, checkedValues, onFilterChange }) {
                 }
                 label={
                   <div className="legend-label">
-                    {item.icone && (<img src={"/images/" + item.icone} alt="" /> )}
+                    {item.icone && (<img src={"server/images/" + item.icone} alt="" /> )}
                     <span className="legend-text">{item.nom}</span>
                   </div>
                 }

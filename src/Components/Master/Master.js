@@ -190,7 +190,7 @@ const Master = () => {
     >
       <div className="container mt-5">
         <Button variant="success" onClick={() => handleAdd()}>
-          Ajouter un nouveau domaine
+          Ajouter un nouveau Master
         </Button>
         {/* </div> */}
         <BootstrapTable
