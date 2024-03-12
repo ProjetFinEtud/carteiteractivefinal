@@ -28,7 +28,6 @@ export default function Update() {
   const validateForm = () => {
     const newErrors = { ...errors };
     if (!formData.username) {
-      console.log(formData.username);
       newErrors.username = "Veuillez entrer votre nom d'utilisateur";
     } else {
       newErrors.username = "";
@@ -50,6 +49,15 @@ export default function Update() {
       newErrors.confirmpass = "Veuillez confirmer votre mot de passe";
     } else {
       newErrors.confirmpass = "";
+    }
+    if (formData.newpassword !== formData.confirmpass) {
+      newErrors.newpassword("Les mots de passe ne correspondent pas.");
+      return;
+    }
+
+    if (formData.newpassword.length < 7) {
+      newErrors.newpassword("Le nouveau mot de passe doit comporter au moins 7 caractères.");
+      return;
     }
 
     setErrors(newErrors);
@@ -102,13 +110,13 @@ export default function Update() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="sm" sx={{ mb: 4 }} style={{ paddingTop:"70px" }}>
         <Paper
           variant="outlined"
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
         >
           <Typography component="h1" variant="h4" align="center">
-            <em>Modifier votre mot de passe</em>
+            <em>Personnaliser votre mot de passe</em>
           </Typography>
           <Form.Text className="text-success">{validation}</Form.Text>
           <Grid container spacing={3}>

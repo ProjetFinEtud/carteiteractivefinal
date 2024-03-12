@@ -154,7 +154,7 @@ function Dashboard() {
                 <ListItemIcon>
                   <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText primary="Domaine" />
+                <ListItemText primary="Domaines" />
               </ListItemButton>
               <ListItemButton onClick={() => toggleComponent("user")}>
                 <ListItemIcon>
