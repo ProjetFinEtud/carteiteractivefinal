@@ -7,9 +7,13 @@ import { database } from './base';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-const Chat = ({ messageid, pseudo }) => {
+const Chat = ({ messageid, pseudo, changePage }) => {
   const [messages, setMessages] = useState({});
   const messagesRef = useRef(null);
+
+  const handleBack = () => {
+    changePage(false);
+  };
 
   useEffect(() => {
     const messagesRef = database.ref(`messages${messageid}`);
@@ -57,6 +61,7 @@ const Chat = ({ messageid, pseudo }) => {
 
   return (
     <div className='box'>
+       <button onClick={handleBack}></button>
       <div>
         <div className='messages' ref={messagesRef}>
           <TransitionGroup className='message'>{messageList}</TransitionGroup>

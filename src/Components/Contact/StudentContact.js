@@ -7,7 +7,7 @@ const StudentContact = () => {
   const [requests, setRequests] = useState([]);
   const [selectedPseudo, setSelectedPseudo] = useState(null);
   const [selectedMessageId, setSelectedMessageId] = useState(null);
-
+  const [bol, setBol] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,7 +48,12 @@ const StudentContact = () => {
   const handleOpenChat = (msg_id, pseudo) => {
     setSelectedMessageId(msg_id);
     setSelectedPseudo(pseudo);
+    changePage(true)
   };
+
+  const changePage= (bolChange) => {
+    setBol(bolChange)
+  }
 
   const handleDelete = (con_id) => {
     // // Supprimer la demande de contact de la base de données
@@ -107,8 +112,8 @@ const StudentContact = () => {
 
   return (
     <div className="container mt-5">
-      {selectedMessageId ? (
-        <Chat messageid={selectedMessageId} pseudo={selectedPseudo} />
+      {!bol ? (
+        <Chat messageid={selectedMessageId} pseudo={selectedPseudo} changePage={changePage} />
       ) : (
         <BootstrapTable
           keyField="con_id"
