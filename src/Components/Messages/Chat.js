@@ -6,6 +6,7 @@ import Message from './Message';
 import { database } from './base'; 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import IconButton from '@mui/material/IconButton';
 
 const Chat = ({ messageid, pseudo, changePage }) => {
   const [messages, setMessages] = useState({});
