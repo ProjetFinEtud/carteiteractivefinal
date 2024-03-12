@@ -7,7 +7,8 @@ import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import InfoIcon from '@mui/icons-material/Info';
+
 
 export default function Poste({
   onFieldChange,
