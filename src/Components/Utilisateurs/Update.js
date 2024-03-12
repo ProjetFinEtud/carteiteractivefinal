@@ -52,12 +52,10 @@ export default function Update() {
     }
     if (formData.newpassword !== formData.confirmpass) {
       newErrors.newpassword = "Les mots de passe ne correspondent pas.";
-      return;
     }
 
     if (formData.newpassword.length < 7) {
       newErrors.newpassword ="Le nouveau mot de passe doit comporter au moins 7 caractères.";
-      return;
     }
 
     setErrors(newErrors);
