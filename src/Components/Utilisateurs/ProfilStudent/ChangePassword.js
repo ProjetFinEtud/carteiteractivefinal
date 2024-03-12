@@ -36,6 +36,16 @@ const ChangePassword = () => {
       return;
     }
 
+    if (formData.newPassword !== formData.confirmPassword) {
+      setError("Les mots de passe ne correspondent pas.");
+      return;
+    }
+
+    if (formData.newPassword.length < 7) {
+      setError("Le nouveau mot de passe doit comporter au moins 7 caractères.");
+      return;
+    }
+
 
     try {
       const response = await fetch("/server/user/updatexspass", {
