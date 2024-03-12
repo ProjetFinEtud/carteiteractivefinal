@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import Button from "react-bootstrap/Button";
 import Chat from "../Messages/Chat";
-
+import { database } from '../Messages/base'; 
 const StudentContact = () => {
   const [requests, setRequests] = useState([]);
   const [selectedPseudo, setSelectedPseudo] = useState(null);
@@ -56,7 +56,7 @@ const StudentContact = () => {
     console.log(bol)
   }
 
-  const handleDelete = async (con_id) => {
+  const handleDelete = async (msg_id, con_id) => {
     try {
       const response = await fetch(
         "server/user/deleteRequestContact",
@@ -83,7 +83,7 @@ const StudentContact = () => {
       .catch(error => console.error("Erreur lors de la suppression de la demande :", error));
 
       const updatedRequests = requests.filter(
-        (request) => request.con_id !== id
+        (request) => request.con_id !== con_id
       );
       setRequests(updatedRequests);
     } catch (error) {
