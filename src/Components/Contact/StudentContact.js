@@ -113,7 +113,7 @@ const StudentContact = () => {
 
   return (
     <div className="container mt-5">
-      {!bol ? (
+      {bol ? (
         <Chat messageid={selectedMessageId} pseudo={selectedPseudo} changePage={changePage} />
       ) : (
         <BootstrapTable
