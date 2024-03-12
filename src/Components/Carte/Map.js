@@ -138,10 +138,14 @@ function App() {
   const openUserModal = (student) => {
     setSelectedStudent(student);
     setIsUserModalOpen(true);
+    setValidateSend("");
+    setErrosSend("");
   };
 
   const closeUserModal = () => {
     setIsUserModalOpen(false);
+    setValidateSend("");
+    setErrosSend("");
   };
 
   useEffect(() => {

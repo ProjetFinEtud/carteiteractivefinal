@@ -104,7 +104,7 @@ function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Page Admin
+              Compte ancien étudiant
             </Typography>
           </Toolbar>
         </AppBar>

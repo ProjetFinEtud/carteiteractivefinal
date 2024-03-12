@@ -70,7 +70,7 @@ const reloadPage = () => {
       <h2>Supprimer votre compte</h2>
       <p>Au regret de vous voir partir</p>
       <button className="btn btn-danger" onClick={handleShowModal}>
-        Supprimer l'étudiant
+        Supprimer votre compte
       </button>
 
       <Modal show={showModal} onHide={handleCloseModal} centered>
