@@ -12,7 +12,7 @@ const StudentContact = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "/user/allRequestStuContact",
+          "server/user/allRequestStuContact",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
