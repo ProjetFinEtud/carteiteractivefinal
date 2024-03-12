@@ -71,7 +71,7 @@ const StudentContact = () => {
         <div>
           <p>
             {" "}
-            {row.stu_login
+            {row.exs_login
               .match(/^(\w+)\.(\w+)(\d{4})$/)
               .slice(1, 3)
               .map((s) => s.charAt(0).toUpperCase() + s.slice(1))

@@ -49,8 +49,22 @@ const ExstudentContact = () => {
   const columns = [
     { dataField: "con_date", text: "Date" },
     { dataField: "con_etat", text: "Etat" },
-    { dataField: "exs_login", text: "A" },
-    { dataField: "stu_login", text: "Expéditeur" },
+    {
+      dataField: "",
+      text: "A",
+      formatter: (cellContent, row) => (
+        <div>
+          <p>
+            {" "}
+            {row.stu_login
+              .match(/^(\w+)\.(\w+)(\d{4})$/)
+              .slice(1, 3)
+              .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+              .join(" ")}
+          </p>
+        </div>
+      ),
+    },
     {
       dataField: "action",
       text: "Ouvrir le chat",
