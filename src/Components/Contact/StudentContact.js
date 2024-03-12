@@ -69,9 +69,10 @@ const StudentContact = () => {
       text: "A",
       formatter: (cellContent, row) => (
         <div>
-          {" "}
-          <p>{row.stu_prenom + " " + row.stu_nom}</p>
+          <p> { row.stu_login.match(/^(\w+)\.(\w+)(\d{4})$/)[1] +  row.stu_login.match(/^(\w+)\.(\w+)(\d{4})$/)[2] }</p>
         </div>
+   
+
       ),
     },
     {
