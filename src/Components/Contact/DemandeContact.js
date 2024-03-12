@@ -122,9 +122,8 @@ const DemandeContact = () => {
     }
   };
 
-  const handleDeleteRequest = async (id) => {
+  const handleDeleteRequest = async (msg_id, con_id) => {
     try {
-      const con_id = id;
       const response = await fetch(
         "server/user/deleteRequestContact",
         {
@@ -142,6 +141,13 @@ const DemandeContact = () => {
         );
         return;
       }
+
+      database.ref(`messages/${msg_id}`).remove()
+      .then(() => {
+        console.log("Demande supprimée avec succès");
+      })
+      .catch(error => console.error("Erreur lors de la suppression de la demande :", error));
+
       const updatedRequests = requests.filter(
         (request) => request.con_id !== id
       );
@@ -206,7 +212,7 @@ const DemandeContact = () => {
               </Button>
               <Button
                 variant="danger"
-                onClick={() => handleOpenChat(row.msg_id, row.exs_login)}
+                onClick={() => handleDeleteRequest(row.msg_id, row.con_id)}
               >
                 Supprimer le contact
               </Button>

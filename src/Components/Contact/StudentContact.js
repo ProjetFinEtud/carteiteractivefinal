@@ -56,15 +56,42 @@ const StudentContact = () => {
     console.log(bol)
   }
 
-  const handleDelete = (con_id) => {
-    // // Supprimer la demande de contact de la base de données
-    // database.ref(`messages/${con_id}`).remove()
-    //   .then(() => {
-    //     console.log("Demande supprimée avec succès");
-    //     // Mettre à jour l'état pour refléter les changements
-    //     setRequests(requests.filter(request => request.con_id !== con_id));
-    //   })
-    //   .catch(error => console.error("Erreur lors de la suppression de la demande :", error));
+  const handleDelete = async (con_id) => {
+    try {
+      const response = await fetch(
+        "server/user/deleteRequestContact",
+        {
+          method: "DELETE",
+          headers: {
+            accessToken: sessionStorage.getItem("accessToken"),
+          },
+          body: JSON.stringify({ con_id }),
+        }
+      );
+      if (!response.ok) {
+        console.error(
+          "Erreur lors de la récupération des données:",
+          response.status
+        );
+        return;
+      }
+
+      database.ref(`messages/${msg_id}`).remove()
+      .then(() => {
+        console.log("Demande supprimée avec succès");
+      })
+      .catch(error => console.error("Erreur lors de la suppression de la demande :", error));
+
+      const updatedRequests = requests.filter(
+        (request) => request.con_id !== id
+      );
+      setRequests(updatedRequests);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des données:",
+        error.message
+      );
+    }
   };
 
   const columns = [
@@ -104,7 +131,7 @@ const StudentContact = () => {
             </Button>
           </div>
         ) : (
-          <Button variant="danger" onClick={() => handleDelete(row.con_id)}>
+          <Button variant="danger" onClick={() => handleDelete(row.msg_id , row.con_id)}>
             Supprimer la demande
           </Button>
         ),
