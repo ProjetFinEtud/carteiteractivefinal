@@ -267,7 +267,7 @@ function App() {
             position={[selectedMarkerPosition.lat, selectedMarkerPosition.lon]}
             icon={
               new L.Icon({
-                iconUrl: "/images/" + selectedMarkerPosition.icone, 
+                iconUrl: "server/images/" + selectedMarkerPosition.icone, 
                 iconSize: [50, 50],
                 iconAnchor: [32, 32],
                 popupAnchor: [0, -32],
