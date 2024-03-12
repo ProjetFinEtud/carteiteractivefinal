@@ -54,7 +54,7 @@ export default function ChangeLocalisation() {
 
     try {
       const response = await fetch(
-        `/user/changeLocalisation`,
+        `server/user/changeLocalisation`,
         {
           method: "PUT",
           headers: {

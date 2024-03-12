@@ -30,7 +30,7 @@ const Poste = () => {
     }
 
     try {
-      const response = await fetch("/server/user/createposte", {
+      const response = await fetch("server/user/createposte", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

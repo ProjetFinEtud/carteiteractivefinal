@@ -32,7 +32,7 @@ const Postes = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "/server/user/allPostes",
+          "server/user/allPostes",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
