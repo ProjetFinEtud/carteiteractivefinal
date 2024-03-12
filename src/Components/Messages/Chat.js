@@ -54,6 +54,7 @@ const Chat = ({ messageid, pseudo }) => {
       />
     </CSSTransition>
   ));
+  
 
   return (
     <>
