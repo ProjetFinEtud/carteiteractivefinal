@@ -1,23 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./Chat.css";
+import React, { useState, useEffect, useRef } from 'react';
+import './Chat.css';
 // import './animations.css';
-import Formulaire from "./Formulaire";
-import Message from "./Message";
-import { database } from "./base";
+import Formulaire from './Formulaire';
+import Message from './Message';
+import { database } from './base'; 
 
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const Chat = ({ messageid, pseudo }) => {
   const [messages, setMessages] = useState({});
   const messagesRef = useRef(null);
 
-  const handleBack = () => {
-    changePage(false);
-  };
-
   useEffect(() => {
     const messagesRef = database.ref(`messages${messageid}`);
-    messagesRef.on("value", (snapshot) => {
+    messagesRef.on('value', (snapshot) => {
       const data = snapshot.val();
       if (data) {
         setMessages(data.messages);
@@ -35,6 +31,7 @@ const Chat = ({ messageid, pseudo }) => {
     }
   }, [messages]);
 
+
   const addMessage = (message) => {
     const newMessages = { ...messages };
 
@@ -45,30 +42,28 @@ const Chat = ({ messageid, pseudo }) => {
 
   const isUser = (messagePseudo) => messagePseudo === pseudo;
 
+
   const messageList = Object.keys(messages).map((key) => (
-    <CSSTransition timeout={200} classNames="fade" key={key}>
+    <CSSTransition timeout={200} classNames='fade' key={key}>
       <Message
         isUser={isUser}
         message={messages[key].message}
         pseudo={messages[key].pseudo}
       />
     </CSSTransition>
+    
   ));
-  
+
 
   return (
-    <>
-      <button onClick={handleBack}>Retour à la demande de contact</button>
-      <div className="box">
-        <button onClick={handleBack}>Retour à la demande de contact</button>
-        <div>
-          <div className="messages" ref={messagesRef}>
-            <TransitionGroup className="message">{messageList}</TransitionGroup>
-          </div>
+    <div className='box'>
+      <div>
+        <div className='messages' ref={messagesRef}>
+          <TransitionGroup className='message'>{messageList}</TransitionGroup>
         </div>
-        <Formulaire length={140} pseudo={pseudo} addMessage={addMessage} />
       </div>
-    </>
+      <Formulaire length={140} pseudo={pseudo} addMessage={addMessage} />
+    </div>
   );
 };
 
