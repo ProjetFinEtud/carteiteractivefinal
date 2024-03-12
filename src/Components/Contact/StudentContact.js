@@ -69,7 +69,7 @@ const StudentContact = () => {
       text: "A",
       formatter: (cellContent, row) => (
         <div>
-          <p> { row.stu_login.match(/^(\w+)\.(\w+)(\d{4})$/)[1] +  row.stu_login.match(/^(\w+)\.(\w+)(\d{4})$/)[2] }</p>
+          <p> { row.stu_login.match(/^(\w+)\.(\w+)(\d{4})$/)[1].slice(1, 3).map(s => s.charAt(0).toUpperCase() + s.slice(1))+ " " + row.stu_login.match(/^(\w+)\.(\w+)(\d{4})$/)[2].slice(1, 3).map(s => s.charAt(0).toUpperCase() + s.slice(1)) }</p>
         </div>
    
 
