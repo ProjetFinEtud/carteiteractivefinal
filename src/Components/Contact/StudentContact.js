@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import Button from "react-bootstrap/Button";
-import Chat from "../Messages/Chat"; 
+import Chat from "../Messages/Chat";
 
 const StudentContact = () => {
   const [requests, setRequests] = useState([]);
@@ -11,14 +11,11 @@ const StudentContact = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "server/user/allRequestStuContact",
-          {
-            headers: {
-              accessToken: sessionStorage.getItem("accessToken"),
-            },
-          }
-        );
+        const response = await fetch("server/user/allRequestStuContact", {
+          headers: {
+            accessToken: sessionStorage.getItem("accessToken"),
+          },
+        });
         if (!response.ok) {
           console.error(
             "Erreur lors de la récupération des données:",
@@ -67,8 +64,16 @@ const StudentContact = () => {
   const columns = [
     { dataField: "con_date", text: "Date" },
     { dataField: "con_etat", text: "Etat" },
-    { dataField: "exs_login", text: "A" },
-    { dataField: "stu_login", text: "Expéditeur" },
+    {
+      dataField: "",
+      text: "A",
+      formatter: (cellContent, row) => (
+        <div>
+          {" "}
+          <p>{row.stu_prenom + " " + row.stu_nom}</p>
+        </div>
+      ),
+    },
     {
       dataField: "action",
       text: "Actions",
