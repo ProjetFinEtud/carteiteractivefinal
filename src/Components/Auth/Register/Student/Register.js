@@ -273,7 +273,7 @@ export default function Register() {
               <Form.Text className="text-danger">{errors.master}</Form.Text>
             </Grid>
             <Grid item xs={12} md={6}>
-              <InputLabel id="annee">Promotion</InputLabel>
+              <InputLabel id="annee">Année début du Master</InputLabel>
               <Select
                 labelId="annee"
                 id="annee"

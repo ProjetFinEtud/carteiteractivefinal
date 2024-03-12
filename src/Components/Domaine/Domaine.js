@@ -152,7 +152,9 @@ const Domaine = () => {
         updateTableData(updatedData);
       } else {
         modifiedDomaine.dom_id = id; 
-        modifiedDomaine.dom_icone = image
+        if(image){
+          modifiedDomaine.dom_icone = image
+        }
         updateTableData(updatedData); 
       }
       
