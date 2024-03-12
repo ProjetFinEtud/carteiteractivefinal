@@ -55,7 +55,7 @@ const DemandeContact = () => {
   const handleAcceptRequest = async (id) => {
     try {
       const response = await fetch(
-        `/user/activateRequestContact/${id}`,
+        `server/user/activateRequestContact/${id}`,
         {
           method: "PUT",
           headers: {
@@ -87,7 +87,7 @@ const DemandeContact = () => {
     try {
       const con_id = id;
       const response = await fetch(
-        "/user/refusedRequestContact",
+        "server/user/refusedRequestContact",
         {
           method: "PUT",
           headers: {
@@ -119,7 +119,7 @@ const DemandeContact = () => {
     try {
       const con_id = id;
       const response = await fetch(
-        "/user/deleteRequestContact",
+        "server/user/deleteRequestContact",
         {
           method: "DELETE",
           headers: {
