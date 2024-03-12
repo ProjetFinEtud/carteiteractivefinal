@@ -166,7 +166,20 @@ export default function Poste({
         </Grid>
         <Grid item xs={12} md={6}>
           <InputLabel>Fin</InputLabel>
-          <Tooltip title="Informations sur la date de fin">
+          <InputLabel
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+            endAdornment={
+              <Tooltip title="Vous pouvez laissez ce champs vide si vous cela est votre poste actuel">
+                <IconButton>
+                  <InfoIcon />
+                </IconButton>
+              </Tooltip>
+            }
+          >
             <Select
               labelId="annee_fin"
               id="annee_fin"
@@ -179,7 +192,7 @@ export default function Poste({
                 </MenuItem>
               ))}
             </Select>
-          </Tooltip>
+          </InputLabel>
         </Grid>
       </Grid>
     </React.Fragment>
