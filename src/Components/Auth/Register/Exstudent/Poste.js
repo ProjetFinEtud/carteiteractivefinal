@@ -5,6 +5,9 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function Poste({
   onFieldChange,
@@ -101,7 +104,7 @@ export default function Poste({
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <InputLabel>Sélectionner votre poste actuel</InputLabel>
+          <InputLabel>Sélectionner votre dernier poste en date</InputLabel>
           <Select
             labelId="nom_poste"
             id="pos_id"
@@ -115,11 +118,11 @@ export default function Poste({
             ))}
           </Select>
           {errors && (
-          <div variant="h6" style={{ color: "red", marginBottom: "20px" }}>
-            {errors}
-          </div>
-        )}
-        </Grid>  
+            <div variant="h6" style={{ color: "red", marginBottom: "20px" }}>
+              {errors}
+            </div>
+          )}
+        </Grid>
         <Grid item xs={12} sm={6}>
           <InputLabel>Nom de votre entreprise actuelle</InputLabel>
           <TextField
@@ -163,18 +166,20 @@ export default function Poste({
         </Grid>
         <Grid item xs={12} md={6}>
           <InputLabel>Fin</InputLabel>
-          <Select
-            labelId="annee_fin"
-            id="annee_fin"
-            value={selectedAnnee_fin}
-            onChange={handleAnneeFinChange}
-          >
-            {years.map((item) => (
-              <MenuItem key={item} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
+          <Tooltip title="Informations sur la date de fin">
+            <Select
+              labelId="annee_fin"
+              id="annee_fin"
+              value={selectedAnnee_fin}
+              onChange={handleAnneeFinChange}
+            >
+              {years.map((item) => (
+                <MenuItem key={item} value={item}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </Tooltip>
         </Grid>
       </Grid>
     </React.Fragment>

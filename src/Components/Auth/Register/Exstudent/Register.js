@@ -283,7 +283,7 @@ export default function Register() {
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
+                      Précédent
                     </Button>
                   )}
                   {activeStep !== steps.length - 1 && (
@@ -292,7 +292,7 @@ export default function Register() {
                       onClick={handleNext}
                       sx={{ mt: 3, ml: 1 }}
                     >
-                      Next
+                      Suivant
                     </Button>
                   )}
                   {activeStep === steps.length - 1 && (

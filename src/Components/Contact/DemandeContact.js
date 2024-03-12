@@ -126,13 +126,13 @@ const DemandeContact = () => {
   const handleDeleteRequest = async (msg_id, con_id) => {
     try {
       const response = await fetch(
-        "server/user/deleteRequestContact",
+        `server/user/deleteRequestContact/${con_id}`,
         {
           method: "DELETE",
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
-          body: JSON.stringify({ con_id }),
+          // body: JSON.stringify({ con_id }),
         }
       );
       if (!response.ok) {

@@ -94,7 +94,7 @@ export default function Activite({ onFieldChange,onFieldChangeShow, formData, er
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <InputLabel id="master">Diplôme obtenue</InputLabel>
+          <InputLabel id="master">Diplôme obtenu</InputLabel>
           <Select
             name="master"
             value={selectedMaster}
