@@ -60,8 +60,9 @@ const Chat = ({ messageid, pseudo, changePage }) => {
 
 
   return (
+    <>
+    <button onClick={handleBack}></button>
     <div className='box'>
-       <button onClick={handleBack}>Revenir</button>
       <div>
         <div className='messages' ref={messagesRef}>
           <TransitionGroup className='message'>{messageList}</TransitionGroup>
@@ -69,6 +70,8 @@ const Chat = ({ messageid, pseudo, changePage }) => {
       </div>
       <Formulaire length={140} pseudo={pseudo} addMessage={addMessage} />
     </div>
+    </>
+   
   );
 };
 
