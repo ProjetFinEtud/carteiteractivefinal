@@ -24,6 +24,7 @@ export default function Update() {
     confirmpass:"",
   });
   const [validation, setValidation] = useState("")
+  const [errorValidation, setErrorValidation] = useState("")
 
   const validateForm = () => {
     const newErrors = { ...errors };
@@ -68,6 +69,7 @@ export default function Update() {
       ...formData,
       [field]: value,
     });
+    setErrorValidation("");
     setErrors((prevData) => ({ ...prevData, [field]: "" }));
   };
 
@@ -88,9 +90,10 @@ export default function Update() {
 
       if (!apiResponse.ok) {
         if (apiResponse.status === 400) {
-          console.error("Erreur de validation des données côté serveur");
+          setErrorValidation("Erreur de validation vérifier les données saisies")
         } else if (apiResponse.status === 401) {
           console.error("Erreur d'authentification côté serveur");
+          setErrorValidation("Mot de passe ou nom d'utilisateur invalide")
         } else {
           console.error("Erreur côté serveur:", apiResponse.statusText);
         }
@@ -117,6 +120,7 @@ export default function Update() {
             <em>Personnaliser votre mot de passe</em>
           </Typography>
           <Form.Text className="text-success">{validation}</Form.Text>
+          <Form.Text className="text-danger">{errorValidation}</Form.Text>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={12}>
               <TextField
