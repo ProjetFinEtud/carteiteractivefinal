@@ -62,7 +62,9 @@ const Chat = ({ messageid, pseudo, changePage }) => {
 
   return (
     <>
-     <IconButton onClick={handleBack} aria-label="Retour à la demande de contact"></IconButton>
+      <IconButton onClick={handleBack} aria-label="Retour à la demande de contact">
+        <ArrowBackIcon />
+      </IconButton>
     <div className='box'>
       <div>
         <div className='messages' ref={messagesRef}>
