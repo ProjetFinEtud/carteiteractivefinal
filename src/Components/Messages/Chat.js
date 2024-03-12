@@ -61,7 +61,7 @@ const Chat = ({ messageid, pseudo, changePage }) => {
 
   return (
     <div className='box'>
-       <button onClick={handleBack}></button>
+       <button onClick={handleBack}>Revenir</button>
       <div>
         <div className='messages' ref={messagesRef}>
           <TransitionGroup className='message'>{messageList}</TransitionGroup>

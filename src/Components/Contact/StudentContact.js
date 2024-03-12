@@ -53,6 +53,7 @@ const StudentContact = () => {
 
   const changePage= (bolChange) => {
     setBol(bolChange)
+    console.log(bol)
   }
 
   const handleDelete = (con_id) => {
