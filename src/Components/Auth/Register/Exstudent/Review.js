@@ -57,6 +57,11 @@ const Review = ({ formData }) => {
               <ListItemText primary="Année du diplôme" />
               <Typography variant="body2">{annee}</Typography>
             </ListItem>
+            <Divider />
+            <ListItem sx={{ py: 1 }}>
+              <ListItemText primary="Domaine" />
+              <Typography variant="body2">{domaine}</Typography>
+            </ListItem>
           </List>
         </Paper>
       </Grid>
@@ -92,6 +97,11 @@ const Review = ({ formData }) => {
             <ListItem sx={{ py: 1 }}>
               <ListItemText primary="Année de fin du poste" />
               <Typography variant="body2">{annee_fin}</Typography>
+            </ListItem>
+            <Divider />
+            <ListItem sx={{ py: 1 }}>
+              <ListItemText primary="Localisation" />
+              <Typography variant="body2">{localisation}</Typography>
             </ListItem>
           </List>
         </Paper>
