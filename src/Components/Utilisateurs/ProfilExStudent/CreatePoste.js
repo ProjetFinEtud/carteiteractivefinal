@@ -43,7 +43,7 @@ const Poste = () => {
 
         const newData = jsonData.postes.map((item) => ({
           id: item.pos_id,
-          nomPoste: item.pos_nom, // Ajout du nom du poste
+          nomPoste: item.pre_id, // Ajout du nom du poste
           descriptionPoste: item.pos_description,
           nomEntreprise: item.pos_entreprise,
           dateDebut: item.pos_debut,
