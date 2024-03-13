@@ -3,10 +3,6 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import CircularProgress from "@mui/material/CircularProgress";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 
 const UserInfo = () => {
   const [loading, setLoading] = useState(true);
@@ -70,7 +66,7 @@ const UserInfo = () => {
       if (!response.ok) {
         throw new Error("Erreur lors de la mise à jour des données");
       }
-      setError(null); // Réinitialiser l'erreur après la mise à jour réussie
+      setError(null); 
       setSuccessMessage("Données mises à jour avec succès !");
     } catch (error) {
       console.error(
@@ -88,8 +84,8 @@ const UserInfo = () => {
 
   const handleInputChange = (field, value) => {
     setUserData({ ...userData, [field]: value });
-    setError(null); // Effacer l'erreur lorsqu'un champ est modifié
-    setSuccessMessage(null); // Effacer le message de succès lorsqu'un champ est modifié
+    setError(null); 
+    setSuccessMessage(null); 
   };
 
   if (loading) {
@@ -108,7 +104,7 @@ const UserInfo = () => {
     <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
       <Avatar
         alt="Avatar"
-        src={"/images/" + userData.exs_photo}
+        src={"server/images/" + userData.exs_photo}
         sx={{ width: 100, height: 100, marginRight: "10px" }}
       />
       <Button variant="contained" component="label">
