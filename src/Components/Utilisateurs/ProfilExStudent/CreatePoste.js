@@ -176,10 +176,16 @@ const Poste = () => {
     setIsEditing(false);
   };
 
+  const getNomPosteById = (postId) => {
+    const poste = prePostes.find((poste) => poste.pre_id === postId);
+    return poste ? poste.pre_nom : "";
+  };
+
   const columns = [
     {
       dataField: "nomPoste",
       text: "Nom du poste",
+      formatter: (cell, row) => getNomPosteById(row.nomPoste),
     },
     {
       dataField: "descriptionPoste",
@@ -263,9 +269,7 @@ const Poste = () => {
                     as="textarea"
                     rows={3}
                     name="descriptionPoste"
-                    value={
-                      modifiedPoste ? modifiedPoste.descriptionPoste : ""
-                    }
+                    value={modifiedPoste ? modifiedPoste.descriptionPoste : ""}
                     onChange={handleInputChange}
                   />
                   <Form.Text className="text-danger">
@@ -288,11 +292,12 @@ const Poste = () => {
 
                 <Form.Group controlId="formDateDebut">
                   <Form.Label>Date de début</Form.Label>
-                  <Form.Control
-                    type="date"
-                    name="dateDebut"
-                    value={modifiedPoste ? modifiedPoste.dateDebut : ""}
-                    onChange={handleInputChange}
+                  <DatePicker
+                    views={["year"]}
+                    label=""
+                    value={modifiedPoste.dateDebut}
+                    onChange={(date) => handleDateChange(date, "dateDebut")}
+                    renderInput={(params) => <TextField {...params} />}
                   />
                   <Form.Text className="text-danger">
                     {errors.dateDebut}
@@ -301,11 +306,12 @@ const Poste = () => {
 
                 <Form.Group controlId="formDateFin">
                   <Form.Label>Date de fin</Form.Label>
-                  <Form.Control
-                    type="date"
-                    name="dateFin"
-                    value={modifiedPoste ? modifiedPoste.dateFin : ""}
-                    onChange={handleInputChange}
+                  <DatePicker
+                    views={["year"]}
+                    label=""
+                    value={modifiedPoste.dateFin}
+                    onChange={(date) => handleDateChange(date, "dateFin")}
+                    renderInput={(params) => <TextField {...params} />}
                   />
                   <Form.Text className="text-danger">
                     {errors.dateFin}
