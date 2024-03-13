@@ -7,8 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import InfoIcon from '@mui/icons-material/Info';
-
+import InfoIcon from "@mui/icons-material/Info";
 
 export default function Poste({
   onFieldChange,
@@ -105,7 +104,7 @@ export default function Poste({
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <InputLabel>Sélectionner votre dernier poste en date</InputLabel>
+          <InputLabel>Votre dernier poste en date</InputLabel>
           <Select
             labelId="nom_poste"
             id="pos_id"
@@ -166,26 +165,17 @@ export default function Poste({
           </Select>
         </Grid>
         <Grid item xs={12} md={6}>
-          <InputLabel>Fin</InputLabel>
-          <InputLabel
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-            endAdornment={
-              <Tooltip title="Vous pouvez laissez ce champs vide si vous cela est votre poste actuel">
-                <IconButton>
-                  <InfoIcon />
-                </IconButton>
-              </Tooltip>
-            }
-          >
+          <FormControl fullWidth>
+            <InputLabel htmlFor="annee_fin">Fin</InputLabel>
             <Select
-              labelId="annee_fin"
+              labelId="annee_fin_label"
               id="annee_fin"
               value={selectedAnnee_fin}
               onChange={handleAnneeFinChange}
+              inputProps={{
+                name: "annee_fin",
+                id: "annee_fin",
+              }}
             >
               {years.map((item) => (
                 <MenuItem key={item} value={item}>
@@ -193,7 +183,12 @@ export default function Poste({
                 </MenuItem>
               ))}
             </Select>
-          </InputLabel>
+            <Tooltip title="Vous pouvez laisser ce champ vide si cela est votre poste actuel">
+              <IconButton aria-label="info">
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
+          </FormControl>
         </Grid>
       </Grid>
     </React.Fragment>
