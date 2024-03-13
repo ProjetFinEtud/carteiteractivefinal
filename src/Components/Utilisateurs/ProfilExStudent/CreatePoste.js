@@ -120,8 +120,8 @@ const Poste = () => {
       }
 
       const url = isEditing
-        ? `/server/poste/updateposte/${modifiedPoste.id}`
-        : "/server/poste/addposte";
+        ? `/server/user/updateposte/${modifiedPoste.id}`
+        : "/server/user/createposte";
       const method = isEditing ? "PUT" : "POST";
 
       const response = await fetch(url, {
