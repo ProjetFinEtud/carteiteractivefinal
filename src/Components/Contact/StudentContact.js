@@ -3,7 +3,6 @@ import BootstrapTable from "react-bootstrap-table-next";
 import Button from "react-bootstrap/Button";
 import Chat from "../Messages/Chat";
 import { database } from "../Messages/base";
-import { message_id } from "../../../../server/function/function";
 import Modal from "react-bootstrap/Modal";
 const StudentContact = () => {
   const [requests, setRequests] = useState([]);
