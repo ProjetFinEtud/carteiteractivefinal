@@ -206,9 +206,7 @@ export default function Register() {
             )}
           </Typography>
 
-          <Typography variant="h6" gutterBottom>
-            Information
-          </Typography>
+          <InputLabel id="master">Informations</InputLabel>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <TextField
