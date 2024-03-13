@@ -97,76 +97,79 @@ const UserInfo = () => {
   }
 
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ padding: "20px", backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
-        <Typography variant="h4" align="center" gutterBottom>
-          Informations personnelles
-        </Typography>
-        <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} align="center">
-            <Avatar
-              alt="Avatar"
-              src={"/images/" + userData.exs_photo}
-              sx={{ width: 100, height: 100, margin: "10px" }}
-            />
-            <Button variant="contained" component="label">
-              Modifier votre image
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                style={{ display: "none" }}
-              />
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="Nom"
-              value={userData.exs_nom}
-              onChange={(e) => handleInputChange("exs_nom", e.target.value)}
-              fullWidth
-              margin="normal"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="Prénom"
-              value={userData.exs_prenom}
-              onChange={(e) => handleInputChange("exs_prenom", e.target.value)}
-              fullWidth
-              margin="normal"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="Adresse email"
-              value={userData.exs_email}
-              onChange={(e) => handleInputChange("exs_email", e.target.value)}
-              fullWidth
-              margin="normal"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="Description"
-              value={userData.exs_description}
-              onChange={(e) => handleInputChange("exs_description", e.target.value)}
-              fullWidth
-              margin="normal"
-              multiline
-              rows={4}
-            />
-          </Grid>
-          <Grid item xs={12} align="center">
-            {error && <Typography variant="body1" color="error">{error}</Typography>}
-            {successMessage && <Typography variant="body1" color="success">{successMessage}</Typography>}
-            <Button variant="contained" color="primary" onClick={handleSave}>
-              Enregistrer
-            </Button>
-          </Grid>
-        </Grid>
+    <Box
+      sx={{
+        padding: "20px",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        maxWidth: "600px",
+        margin: "auto",
+        marginTop: "50px",
+        borderRadius: "10px",
+        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      <Typography variant="h5" align="center" mb={3}>
+        Informations Personnelles
+      </Typography>
+      <Box display="flex" justifyContent="center" alignItems="center" mb={3}>
+        <Avatar
+          alt="Avatar"
+          src={"/images/" + userData.exs_photo}
+          sx={{ width: 100, height: 100, margin: "10px" }}
+        />
+        <Button variant="contained" component="label">
+          Modifier votre image
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            style={{ display: "none" }}
+          />
+        </Button>
       </Box>
-    </Container>
+      <TextField
+        label="Nom"
+        value={userData.exs_nom}
+        onChange={(e) => handleInputChange("exs_nom", e.target.value)}
+        fullWidth
+        margin="normal"
+      />
+      <TextField
+        label="Prénom"
+        value={userData.exs_prenom}
+        onChange={(e) => handleInputChange("exs_prenom", e.target.value)}
+        fullWidth
+        margin="normal"
+      />
+      <TextField
+        label="Adresse email"
+        value={userData.exs_email}
+        onChange={(e) => handleInputChange("exs_email", e.target.value)}
+        fullWidth
+        margin="normal"
+      />
+      <TextField
+        label="Description"
+        value={userData.exs_description}
+        onChange={(e) => handleInputChange("exs_description", e.target.value)}
+        fullWidth
+        margin="normal"
+        multiline
+        rows={4}
+      />
+      {error && <Typography color="error">{error}</Typography>}
+      {successMessage && (
+        <Typography color="success">{successMessage}</Typography>
+      )}
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSave}
+        fullWidth
+      >
+        Enregistrer
+      </Button>
+    </Box>
   );
 };
 
