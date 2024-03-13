@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
-
+import FormControl from '@mui/material/FormControl';
 export default function Poste({
   onFieldChange,
   onFieldChangeShow,
