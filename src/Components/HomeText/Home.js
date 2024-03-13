@@ -19,7 +19,13 @@ const HomePage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/server/user/allAcc");
+      const response = await fetch("/server/user/allAcc",
+      {
+        headers: {
+          accessToken: sessionStorage.getItem("accessToken"),
+        },
+      }
+    );
       if (!response.ok) {
         throw new Error("Erreur lors du chargement des données");
       }
@@ -44,6 +50,7 @@ const HomePage = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          accessToken: sessionStorage.getItem("accessToken"),
         },
         body: JSON.stringify({
           title: newTitle,
@@ -74,6 +81,7 @@ const HomePage = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          accessToken: sessionStorage.getItem("accessToken"),
         },
         body: JSON.stringify({
           title: newTitle,
