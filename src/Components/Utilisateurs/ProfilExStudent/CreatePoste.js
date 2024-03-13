@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from '@mui/x-date-pickers';
+
 const Poste = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -42,6 +43,7 @@ const Poste = () => {
 
         const newData = jsonData.postes.map((item) => ({
           id: item.pos_id,
+          nomPoste: item.pos_nom, // Ajout du nom du poste
           descriptionPoste: item.pos_description,
           nomEntreprise: item.pos_entreprise,
           dateDebut: item.pos_debut,
