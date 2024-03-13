@@ -15,6 +15,7 @@ import Poste from "./Poste";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Information from "./Information";
+
 const steps = ["Informations", "Activité", "Localisation", "Poste", "Résumé"];
 
 export default function Register() {
@@ -34,6 +35,7 @@ export default function Register() {
     annee_debut: "",
     annee_fin: "",
   });
+
   const [formDataShow, setFormDataShow] = useState({
     nom: "",
     prenom: "",
@@ -56,19 +58,23 @@ export default function Register() {
     master: "",
     annee: "",
   });
+
   const [errorsActivite, setErrorsActivite] = useState({
     master: "",
     annee: "",
     domaine: "",
   });
+
   const [errorsLocalisation, setErrorsLocalisation] = useState({
     localisation: "",
   });
+
   const [errorsPoste, setErrorsPoste] = useState("");
 
   const [errors, setErrors] = useState({
     validation: "",
   });
+
   const [validationSuccess, setValidationSuccess] = useState(false);
 
   const [activeStep, setActiveStep] = useState(0);
@@ -77,6 +83,7 @@ export default function Register() {
     const newErrorsInformation = { ...errorsInformation };
     const newErrorsActivite = { ...errorsActivite };
     const newErrorsLocalisation = { ...errorsLocalisation };
+
     if (
       activeStep === 0 &&
       (!formData.nom || !formData.prenom || !formData.email)
@@ -87,19 +94,18 @@ export default function Register() {
         newErrorsInformation.nom = "";
       }
 
-      // Valider le champ Prénom
       if (!formData.prenom) {
         newErrorsInformation.prenom = "Veuillez entrer votre prénom";
       } else {
         newErrorsInformation.prenom = "";
       }
 
-      // Valider le champ Email
       if (!formData.email) {
         newErrorsInformation.email = "Veuillez entrer votre email (valide)";
       } else {
         newErrorsInformation.email = "";
       }
+
       setErrorsInformation(newErrorsInformation);
       return;
     }
@@ -107,15 +113,17 @@ export default function Register() {
     if (activeStep === 2 && (!formData.laltitude || !formData.longitude)) {
       if (!formData.longitude || !formData.laltitude) {
         newErrorsLocalisation.localisation =
-          "Veuillez marquez votre emplacement sur la carte";
+          "Veuillez marquer votre emplacement sur la carte";
       } else {
         newErrorsLocalisation.localisation = "";
       }
+
       setErrorsLocalisation(newErrorsLocalisation);
       return;
     }
+
     if (activeStep === 3 && !formData.nom_poste) {
-      setErrorsPoste("Veuillez sélectionné un poste ou Pas de poste");
+      setErrorsPoste("Veuillez sélectionner un poste ou Pas de poste");
       return;
     }
 
@@ -129,22 +137,22 @@ export default function Register() {
         newErrorsActivite.master = "";
       }
 
-      // Valider le champ Prénom
       if (!formData.domaine) {
         newErrorsActivite.domaine = "Veuillez sélectionner votre domaine";
       } else {
         newErrorsActivite.domaine = "";
       }
 
-      // Valider le champ Email
       if (!formData.annee) {
         newErrorsActivite.annee = "Veuillez sélectionner votre année";
       } else {
         newErrorsActivite.annee = "";
       }
+
       setErrorsActivite(newErrorsActivite);
       return;
     }
+
     setActiveStep(activeStep + 1);
   };
 
@@ -156,13 +164,16 @@ export default function Register() {
     setFormData({ ...formData, [field]: value });
     setErrors((prevData) => ({ ...prevData, validation: "" }));
   };
+
   const handleFormDataChangeShow = (field, value) => {
     setFormDataShow({ ...formDataShow, [field]: value });
   };
+
   const handleFormDataLon = (field, value) => {
     setErrorsLocalisation({ ...errorsLocalisation, [field]: "" });
     formData.longitude = value;
   };
+
   const handleFormDataLat = (field, value) => {
     setErrorsLocalisation({ ...errorsLocalisation, [field]: "" });
     formData.laltitude = value;
@@ -170,16 +181,14 @@ export default function Register() {
 
   const handleValidation = async (event) => {
     event.preventDefault();
-    const apiResponse = await fetch(
-      "/server/auth/createxStudent",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
+
+    const apiResponse = await fetch("/server/auth/createxStudent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
     if (!apiResponse.ok) {
       if (apiResponse.status === 400) {
@@ -193,12 +202,14 @@ export default function Register() {
           validation: "Veuillez réessayer ultérieurement",
         }));
       }
+
       return;
     } else {
       setValidationSuccess(true);
     }
 
     setActiveStep(steps.length);
+
     setTimeout(() => {
       navigate("/");
     }, 2000);
@@ -210,10 +221,10 @@ export default function Register() {
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Box
           sx={{
-            maxHeight: "90vh", 
-            overflowY: "auto", 
+            maxHeight: "90vh",
+            overflowY: "auto",
             "&::-webkit-scrollbar": {
-              display: "none", 
+              display: "none",
             },
             scrollbarWidth: "none",
           }}
@@ -226,7 +237,10 @@ export default function Register() {
               <em>Rejoignez-nous</em>
             </Typography>
             <Form.Text className="text-danger">{errors.validation}</Form.Text>
-            <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5, margin: 'auto' }}>
+            <Stepper
+              activeStep={activeStep}
+              sx={{ pt: 3, pb: 5, margin: "auto" }}
+            >
               {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
