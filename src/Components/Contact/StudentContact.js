@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import Button from "react-bootstrap/Button";
 import Chat from "../Messages/Chat";
-import { database } from '../Messages/base'; 
+import { database } from "../Messages/base";
+import { message_id } from "../../../../server/function/function";
 const StudentContact = () => {
   const [requests, setRequests] = useState([]);
   const [selectedPseudo, setSelectedPseudo] = useState(null);
   const [selectedMessageId, setSelectedMessageId] = useState(null);
-  const [bol, setBol] = useState(false)
+  const [bol, setBol] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,26 +52,30 @@ const StudentContact = () => {
   const handleOpenChat = (msg_id, pseudo) => {
     setSelectedMessageId(msg_id);
     setSelectedPseudo(pseudo);
-    changePage(true)
+    changePage(true);
   };
 
-  const changePage= (bolChange) => {
-    setBol(bolChange)
-    console.log(bol)
-  }
+  const changePage = (bolChange) => {
+    setBol(bolChange);
+    console.log(bol);
+  };
 
-  const handleDelete = async (msg_id, id) => {
+  const handleDelete = (msg_id, id) => {
+    setSelectedMessageId(msg_id);
+    setDeleteId(id)
+    setShowModal(true); 
+  };
+
+  const confirmDelete = async () =>{
+    const id = deleteId
+    const msg_id = selectedMessageId
     try {
-      const response = await fetch(
-        `server/user/deleteRequestContact`,
-        {
-          method: "DELETE",
-          headers: {
-            accessToken: sessionStorage.getItem("accessToken"),
-          },
-          body: JSON.stringify({ id }),
-        }
-      );
+      const response = await fetch(`server/user/deleteRequestContact/${id}`, {
+        method: "DELETE",
+        headers: {
+          accessToken: sessionStorage.getItem("accessToken"),
+        },
+      });
       if (!response.ok) {
         console.error(
           "Erreur lors de la récupération des données:",
@@ -76,23 +84,28 @@ const StudentContact = () => {
         return;
       }
 
-      database.ref(`messages/${msg_id}`).remove()
-      .then(() => {
-        console.log("Demande supprimée avec succès");
-      })
-      .catch(error => console.error("Erreur lors de la suppression de la demande :", error));
+      database
+        .ref(`messages/${msg_id}`)
+        .remove()
+        .then(() => {
+          console.log("Demande supprimée avec succès");
+        })
+        .catch((error) =>
+          console.error("Erreur lors de la suppression de la demande :", error)
+        );
 
       const updatedRequests = requests.filter(
         (request) => request.con_id !== id
       );
       setRequests(updatedRequests);
+      setShowModal(false);
     } catch (error) {
       console.error(
         "Erreur lors de la récupération des données:",
         error.message
       );
     }
-  };
+  }
 
   const columns = [
     { dataField: "con_date", text: "Date" },
@@ -131,7 +144,10 @@ const StudentContact = () => {
             </Button>
           </div>
         ) : (
-          <Button variant="danger" onClick={() => handleDelete(row.msg_id , row.con_id)}>
+          <Button
+            variant="danger"
+            onClick={() => handleDelete(row.msg_id, row.con_id)}
+          >
             Supprimer la demande
           </Button>
         ),
@@ -139,18 +155,40 @@ const StudentContact = () => {
   ];
 
   return (
-    <div className="container mt-5">
-      {bol ? (
-        <Chat messageid={selectedMessageId} pseudo={selectedPseudo} changePage={changePage} />
-      ) : (
-        <BootstrapTable
-          keyField="con_id"
-          data={requests}
-          columns={columns}
-          bordered={false}
-        />
-      )}
-    </div>
+    <>
+      <div className="container mt-5">
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirmation de suppression</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Êtes-vous sûr de vouloir supprimer cet élément ?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>
+              Annuler
+            </Button>
+            <Button variant="danger" onClick={confirmDelete}>
+              Supprimer
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        {bol ? (
+          <Chat
+            messageid={selectedMessageId}
+            pseudo={selectedPseudo}
+            changePage={changePage}
+          />
+        ) : (
+          <BootstrapTable
+            keyField="con_id"
+            data={requests}
+            columns={columns}
+            bordered={false}
+          />
+        )}
+      </div>
+    </>
   );
 };
 
