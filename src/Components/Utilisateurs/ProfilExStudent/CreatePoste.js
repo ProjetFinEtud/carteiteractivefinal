@@ -247,7 +247,7 @@ const Poste = () => {
                   >
                     <option value="">Sélectionner un poste</option>
                     {prePostes.map((prePoste) => (
-                      <option key={prePoste.pre_id} value={prePoste.pre_nom}>
+                      <option key={prePoste.pre_id} value={prePoste.pre_id}>
                         {prePoste.pre_nom}
                       </option>
                     ))}
