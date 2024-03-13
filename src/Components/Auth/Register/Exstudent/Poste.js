@@ -99,63 +99,88 @@ export default function Poste({
 
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Détails sur votre poste actuel
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <InputLabel>Votre dernier poste en date</InputLabel>
+    <Typography variant="h6" gutterBottom>
+      Détails sur votre poste actuel
+    </Typography>
+    <Grid container spacing={3}>
+      <Grid item xs={12} sm={6}>
+        <InputLabel>Votre dernier poste en date</InputLabel>
+        <Select
+          labelId="nom_poste"
+          id="pos_id"
+          value={nom_poste}
+          onChange={handleNomPosteChange}
+        >
+          {dataPoste.map((item) => (
+            <MenuItem key={item.pre_nom} value={item.pre_id}>
+              {item.pre_nom}
+            </MenuItem>
+          ))}
+        </Select>
+        {errors && (
+          <div variant="h6" style={{ color: "red", marginBottom: "20px" }}>
+            {errors}
+          </div>
+        )}
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <InputLabel>Nom de votre entreprise actuelle</InputLabel>
+        <TextField
+          id="nom_entreprise"
+          name="nom_entreprise"
+          label="Nom de l'entreprise"
+          fullWidth
+          autoComplete="family-name"
+          value={nom_entreprise}
+          onChange={handleNomEntrepriseChange}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <InputLabel>
+          Description de vos principales missions sur ce poste
+        </InputLabel>
+        <TextField
+          id="description"
+          name="description"
+          label="Description"
+          fullWidth
+          autoComplete="description"
+          value={description}
+          onChange={handleDescriptionChange}
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <InputLabel>Début</InputLabel>
+        <Select
+          labelId="annee_debut"
+          id="annee_debut"
+          value={selectedAnnee_debut}
+          onChange={handleAnneeDebutChange}
+        >
+          {years.map((item) => (
+            <MenuItem key={item} value={item}>
+              {item}
+            </MenuItem>
+          ))}
+        </Select>
+      </Grid>
+      <Grid item xs={12} md={6} sx={{ display: "flex", alignItems: "center" }}>
+        <InputLabel sx={{ mr: 1 }}>Fin</InputLabel>
+        <Tooltip title="Vous pouvez laisser ce champ vide si cela est votre poste actuel">
+          <IconButton aria-label="info">
+            <InfoIcon />
+          </IconButton>
+        </Tooltip>
+        <FormControl fullWidth>
           <Select
-            labelId="nom_poste"
-            id="pos_id"
-            value={nom_poste}
-            onChange={handleNomPosteChange}
-          >
-            {dataPoste.map((item) => (
-              <MenuItem key={item.pre_nom} value={item.pre_id}>
-                {item.pre_nom}
-              </MenuItem>
-            ))}
-          </Select>
-          {errors && (
-            <div variant="h6" style={{ color: "red", marginBottom: "20px" }}>
-              {errors}
-            </div>
-          )}
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <InputLabel>Nom de votre entreprise actuelle</InputLabel>
-          <TextField
-            id="nom_entreprise"
-            name="nom_entreprise"
-            label="Nom de l'entreprise"
-            fullWidth
-            autoComplete="family-name"
-            value={nom_entreprise}
-            onChange={handleNomEntrepriseChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <InputLabel>
-            Description de vos principales missions sur ce poste
-          </InputLabel>
-          <TextField
-            id="description"
-            name="description"
-            label="Description"
-            fullWidth
-            autoComplete="description"
-            value={description}
-            onChange={handleDescriptionChange}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <InputLabel>Début</InputLabel>
-          <Select
-            labelId="annee_debut"
-            id="annee_debut"
-            value={selectedAnnee_debut}
-            onChange={handleAnneeDebutChange}
+            labelId="annee_fin_label"
+            id="annee_fin"
+            value={selectedAnnee_fin}
+            onChange={handleAnneeFinChange}
+            inputProps={{
+              name: "annee_fin",
+              id: "annee_fin",
+            }}
           >
             {years.map((item) => (
               <MenuItem key={item} value={item}>
@@ -163,34 +188,10 @@ export default function Poste({
               </MenuItem>
             ))}
           </Select>
-        </Grid>
-        <Grid item xs={12} md={6}>
-        <Tooltip title="Vous pouvez laisser ce champ vide si cela est votre poste actuel">
-              <IconButton aria-label="info">
-                <InfoIcon />
-              </IconButton>
-            </Tooltip>
-          <FormControl fullWidth sx={{ display: "flex", alignItems: "center" }}>
-            <InputLabel htmlFor="annee_fin">Fin</InputLabel>
-            <Select
-              labelId="annee_fin_label"
-              id="annee_fin"
-              value={selectedAnnee_fin}
-              onChange={handleAnneeFinChange}
-              inputProps={{
-                name: "annee_fin",
-                id: "annee_fin",
-              }}
-            >
-              {years.map((item) => (
-                <MenuItem key={item} value={item}>
-                  {item}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
+        </FormControl>
       </Grid>
-    </React.Fragment>
+    </Grid>
+  </React.Fragment>
+  
   );
 }
