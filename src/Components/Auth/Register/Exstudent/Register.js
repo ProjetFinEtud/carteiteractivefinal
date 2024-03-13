@@ -237,16 +237,15 @@ export default function Register() {
               <em>Rejoignez-nous</em>
             </Typography>
             <Form.Text className="text-danger">{errors.validation}</Form.Text>
-            <Stepper
-              activeStep={activeStep}
-              sx={{ pt: 3, pb: 5, marginX: "auto", width: "100%" }}
-            >
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </Box>
             {activeStep === steps.length ? (
               { validationSuccess } && (
                 <Form.Text className="text-success">
