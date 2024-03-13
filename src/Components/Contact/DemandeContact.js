@@ -123,10 +123,10 @@ const DemandeContact = () => {
     }
   };
 
-  const handleDeleteRequest = async (msg_id, con_id) => {
+  const handleDeleteRequest = async (msg_id, id) => {
     try {
       const response = await fetch(
-        `server/user/deleteRequestContact/${con_id}`,
+        `server/user/deleteRequestContact/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -150,7 +150,7 @@ const DemandeContact = () => {
       .catch(error => console.error("Erreur lors de la suppression de la demande :", error));
 
       const updatedRequests = requests.filter(
-        (request) => request.con_id !== con_id
+        (request) => request.con_id !== id
       );
       setRequests(updatedRequests);
     } catch (error) {
