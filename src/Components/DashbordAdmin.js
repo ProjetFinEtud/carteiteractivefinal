@@ -211,7 +211,7 @@ function Dashboard() {
         {currentComponent === "profil" && <ProfilAdmin />}
         {currentComponent === "domaine" && <Domaine />}
         {currentComponent === "master" && <Master />}
-        {currentComponent === "homtext" && <HomeText />}
+        {currentComponent === "hometext" && <HomeText />}
         {currentComponent === "poste" && <Poste />}
         {currentComponent === "user" && (
           <div style={{ height: "100vh", width: "100%" }}>
