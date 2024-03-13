@@ -59,13 +59,13 @@ const StudentContact = () => {
   const handleDelete = async (msg_id, id) => {
     try {
       const response = await fetch(
-        `server/user/deleteRequestContact/${id}`,
+        `server/user/deleteRequestContact`,
         {
           method: "DELETE",
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
-          // body: JSON.stringify({ con_id }),
+          body: JSON.stringify({ con_id }),
         }
       );
       if (!response.ok) {
