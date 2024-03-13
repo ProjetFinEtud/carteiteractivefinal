@@ -68,6 +68,7 @@ const UserInfo = () => {
       }
       setError(null); 
       setSuccessMessage("Données mises à jour avec succès !");
+      window.location.reload();
     } catch (error) {
       console.error(
         "Erreur lors de la mise à jour des données:",

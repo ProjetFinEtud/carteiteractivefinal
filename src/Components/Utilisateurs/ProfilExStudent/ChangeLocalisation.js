@@ -77,6 +77,8 @@ export default function ChangeLocalisation() {
       }
   
     setSuccess("Votre localisation à été changer avec succès");
+
+    window.location.reload();
       
     } catch (error) {
       console.error(
