@@ -66,7 +66,6 @@ const StudentContact = () => {
             accessToken: sessionStorage.getItem("accessToken"),
           },
           // body: JSON.stringify({ con_id }),
-          
         }
       );
       if (!response.ok) {
