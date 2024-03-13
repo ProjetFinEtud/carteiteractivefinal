@@ -306,9 +306,7 @@ const Poste = () => {
                 <Form.Group controlId="formDateDebut">
                   <Form.Label>Date de début</Form.Label>
                   <DatePicker
-                    selected={
-                      modifiedPoste ? new Date(modifiedPoste.dateDebut) : null
-                    }
+                    selected={modifiedPoste && modifiedPoste.dateDebut ? new Date(modifiedPoste.dateDebut) : null}
                     onChange={(date) => handleDateChange(date, "dateDebut")}
                     dateFormat="yyyy"
                     showYearPicker
@@ -322,9 +320,7 @@ const Poste = () => {
                 <Form.Group controlId="formDateFin">
                   <Form.Label>Date de fin</Form.Label>
                   <DatePicker
-                    selected={
-                      modifiedPoste ? new Date(modifiedPoste.dateFin) : null
-                    }
+                   selected={modifiedPoste && modifiedPoste.dateFin ? new Date(modifiedPoste.dateFin) : null}
                     onChange={(date) => handleDateChange(date, "dateFin")}
                     dateFormat="yyyy"
                     showYearPicker
