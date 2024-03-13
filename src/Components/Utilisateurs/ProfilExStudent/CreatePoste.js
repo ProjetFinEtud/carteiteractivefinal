@@ -1,156 +1,329 @@
 import React, { useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from "react-router-dom";
+import BootstrapTable from "react-bootstrap-table-next";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Box from "@mui/material/Box";
 
 const Poste = () => {
-  const [formData, setFormData] = useState({
-    nomPoste: "",
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const [selectedPoste, setSelectedPoste] = useState(null);
+  const [modifiedPoste, setModifiedPoste] = useState(null);
+  const [prePostes, setPrePostes] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [errors, setErrors] = useState({
     descriptionPoste: "",
     nomEntreprise: "",
     dateDebut: "",
     dateFin: "",
   });
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [postes, setPostes] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    const fetchPostes = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch("server/user/allPrePostes", {
+        const response = await fetch("/server/user/allPostes", {
           headers: {
-            "Content-Type": "application/json",
             accessToken: sessionStorage.getItem("accessToken"),
           },
         });
-        console.log(response)
         if (!response.ok) {
-          throw new Error("Erreur lors de la récupération des postes.");
+          console.error(
+            "Erreur lors de la récupération des données:",
+            response.status
+          );
+          navigate("/");
+          return;
         }
-        const data = await response.json();
-        console.log(data)
-        
-        setPostes(data);
+        const jsonData = await response.json();
+
+        const newData = jsonData.postes.map((item) => ({
+          id: item.pos_id,
+          descriptionPoste: item.pos_description,
+          nomEntreprise: item.pos_entreprise,
+          dateDebut: item.pos_debut,
+          dateFin: item.pos_fin,
+        }));
+        setData(newData);
       } catch (error) {
-        setError(error.message);
+        console.error(
+          "Erreur lors de la récupération des données:",
+          error.message
+        );
+        navigate("/");
       }
     };
 
-    fetchPostes();
-  }, []);
+    const fetchPrePostes = async () => {
+      try {
+        const response = await fetch("/server/user/allPrePostes", {
+          headers: {
+            accessToken: sessionStorage.getItem("accessToken"),
+          },
+        });
+        if (!response.ok) {
+          console.error(
+            "Erreur lors de la récupération des données:",
+            response.status
+          );
+          return;
+        }
+        const jsonData = await response.json();
+        setPrePostes(jsonData.pre_post);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des données:",
+          error.message
+        );
+      }
+    };
 
-  const handleChange = (e) => {
+    fetchData();
+    fetchPrePostes();
+  }, [navigate]);
+
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+
+    setModifiedPoste((prevState) => ({
+      ...prevState,
       [name]: value,
-    });
-    setSuccess("");
-    setError("");
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
   };
 
-  const handleCreatePoste = async () => {
-    if (
-      !formData.nomPoste ||
-      !formData.descriptionPoste ||
-      !formData.nomEntreprise ||
-      !formData.dateDebut ||
-      !formData.dateFin
-    ) {
-      setError("Veuillez remplir tous les champs.");
-      return;
-    }
+  const validateForm = () => {
+    const newErrors = { ...errors };
 
+    Object.keys(modifiedPoste).forEach((key) => {
+      if (!modifiedPoste[key]) {
+        newErrors[key] = `Veuillez entrer ${key}`;
+      }
+    });
+
+    setErrors(newErrors);
+
+    return Object.values(newErrors).every((error) => !error);
+  };
+
+  const handleValidation = async () => {
     try {
-      const response = await fetch("server/user/createposte", {
-        method: "POST",
+      const validation = validateForm();
+      if (!validation) {
+        console.log("error");
+        return;
+      }
+
+      const url = isEditing
+        ? `/server/poste/updateposte/${modifiedPoste.id}`
+        : "/server/poste/addposte";
+      const method = isEditing ? "PUT" : "POST";
+
+      const response = await fetch(url, {
+        method: method,
         headers: {
           "Content-Type": "application/json",
           accessToken: sessionStorage.getItem("accessToken"),
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(modifiedPoste),
       });
-
       if (!response.ok) {
-        const errorMessage = await response.text();
-        throw new Error(errorMessage);
+        throw new Error("Erreur lors de la mise à jour des données");
       }
 
-      setSuccess("Votre poste a été ajouté avec succès");
+      const updatedData = isEditing
+        ? data.map((item) =>
+            item.id === modifiedPoste.id ? modifiedPoste : item
+          )
+        : [...data, modifiedPoste];
 
-      window.location.reload();
+      setData(updatedData);
+
+      handleCloseModal();
     } catch (error) {
-      setError(error.message);
+      console.error("Erreur lors de la validation des modifications:", error);
     }
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedPoste(null);
+    setModifiedPoste(null);
+    setIsEditing(false);
+  };
+
+  const handleEdit = (poste) => {
+    setSelectedPoste(poste);
+    setModifiedPoste({ ...poste });
+    setShowModal(true);
+    setIsEditing(true);
+  };
+
+  const handleAdd = () => {
+    setModifiedPoste({
+      nomPoste: "",
+      descriptionPoste: "",
+      nomEntreprise: "",
+      dateDebut: "",
+      dateFin: "",
+    });
+    setShowModal(true);
+    setIsEditing(false);
+  };
+
+  const columns = [
+    {
+      dataField: "nomPoste",
+      text: "Nom du poste",
+    },
+    {
+      dataField: "descriptionPoste",
+      text: "Description",
+    },
+    {
+      dataField: "nomEntreprise",
+      text: "Nom de l'entreprise",
+    },
+    {
+      dataField: "dateDebut",
+      text: "Date de début",
+    },
+    {
+      dataField: "dateFin",
+      text: "Date de fin",
+    },
+    {
+      dataField: "actions",
+      text: "Actions",
+      formatter: (cellContent, row) => (
+        <Button onClick={() => handleEdit(row)}>Modifier</Button>
+      ),
+    },
+  ];
+
   return (
-    <div style={{ padding: "20px", backgroundColor: "rgba(255, 255, 255, 0.8)", maxWidth: "400px" }}>
-      <TextField
-        select
-        label="Nom du poste"
-        name="nomPoste"
-        value={formData.nomPoste}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-      >
-        {postes.map((poste) => (
-          <MenuItem key={poste.pre_id} value={poste.pre_id}>
-            {poste.pre_nom}
-          </MenuItem>
-        ))}
-      </TextField>
-      <TextField
-        label="Description du poste"
-        name="descriptionPoste"
-        value={formData.descriptionPoste}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Nom de l'entreprise"
-        name="nomEntreprise"
-        value={formData.nomEntreprise}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Date de début"
-        type="date"
-        name="dateDebut"
-        value={formData.dateDebut}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-        InputLabelProps={{
-          shrink: true,
+    <div style={{ height: "100vh", width: "100%" }}>
+      <Box
+        width="80%"
+        height="90%"
+        sx={{
+          overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+          scrollbarWidth: "none",
         }}
-      />
-      <TextField
-        label="Date de fin"
-        type="date"
-        name="dateFin"
-        value={formData.dateFin}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>{success}</p>}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleCreatePoste}
       >
-        Créer le poste
-      </Button>
+        <div className="container mt-5">
+          <Button variant="success" onClick={() => handleAdd()}>
+            Ajouter un nouveau poste
+          </Button>
+          <BootstrapTable
+            keyField="id"
+            data={Array.isArray(data) ? data : []}
+            columns={columns}
+          />
+
+          <Modal show={showModal} onHide={handleCloseModal} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                {isEditing ? "Modifier" : "Ajouter"} le poste
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group controlId="formNom">
+                  <Form.Label>Nom du poste</Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="nomPoste"
+                    value={modifiedPoste ? modifiedPoste.nomPoste : ""}
+                    onChange={handleInputChange}
+                  >
+                    <option value="">Sélectionner un poste</option>
+                    {prePostes.map((prePoste) => (
+                      <option key={prePoste.id} value={prePoste.nomPoste}>
+                        {prePoste.nomPoste}
+                      </option>
+                    ))}
+                  </Form.Control>
+                  <Form.Text className="text-danger">
+                    {errors.nomPoste}
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group controlId="formDescription">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    name="descriptionPoste"
+                    value={
+                      modifiedPoste ? modifiedPoste.descriptionPoste : ""
+                    }
+                    onChange={handleInputChange}
+                  />
+                  <Form.Text className="text-danger">
+                    {errors.descriptionPoste}
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group controlId="formNomEntreprise">
+                  <Form.Label>Nom de l'entreprise</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="nomEntreprise"
+                    value={modifiedPoste ? modifiedPoste.nomEntreprise : ""}
+                    onChange={handleInputChange}
+                  />
+                  <Form.Text className="text-danger">
+                    {errors.nomEntreprise}
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group controlId="formDateDebut">
+                  <Form.Label>Date de début</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="dateDebut"
+                    value={modifiedPoste ? modifiedPoste.dateDebut : ""}
+                    onChange={handleInputChange}
+                  />
+                  <Form.Text className="text-danger">
+                    {errors.dateDebut}
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group controlId="formDateFin">
+                  <Form.Label>Date de fin</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="dateFin"
+                    value={modifiedPoste ? modifiedPoste.dateFin : ""}
+                    onChange={handleInputChange}
+                  />
+                  <Form.Text className="text-danger">
+                    {errors.dateFin}
+                  </Form.Text>
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Fermer
+              </Button>
+              <Button variant="primary" onClick={handleValidation}>
+                Enregistrer
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      </Box>
     </div>
   );
 };
