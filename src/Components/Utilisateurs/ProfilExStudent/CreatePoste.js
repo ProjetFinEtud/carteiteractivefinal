@@ -307,7 +307,7 @@ const Poste = () => {
                   <DatePicker
                     views={["year"]}
                     label=""
-                    value={modifiedPoste.dateDebut || ""}
+                    value={modifiedPoste ? modifiedPoste.dateDebut : ""}
                     onChange={(date) => handleDateChange(date, "dateDebut")}
                     renderInput={(params) => <TextField {...params} />}
                   />
@@ -321,7 +321,7 @@ const Poste = () => {
                   <DatePicker
                     views={["year"]}
                     label=""
-                    value={modifiedPoste.dateFin || ""}
+                    value={modifiedPoste ? modifiedPoste.dateFin : ""}
                     onChange={(date) => handleDateChange(date, "dateFin")}
                     renderInput={(params) => <TextField {...params} />}
                   />
