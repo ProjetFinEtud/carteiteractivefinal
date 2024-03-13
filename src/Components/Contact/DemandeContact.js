@@ -117,7 +117,7 @@ const DemandeContact = () => {
       }
 
       const updatedRequests = requests.map((request) =>
-        request.con_id === id ? { ...request, con_etat: "Accepté" } : request
+        request.con_id === id ? { ...request, con_etat: "Accepter" } : request
       );
       setRequests(updatedRequests);
     } catch (error) {
@@ -130,13 +130,11 @@ const DemandeContact = () => {
 
   const handleRejectRequest = async (id) => {
     try {
-      const con_id = id;
-      const response = await fetch("server/user/refusedRequestContact", {
+      const response = await fetch(`server/user/refusedRequestContact/${id}`, {
         method: "PUT",
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
         },
-        body: JSON.stringify({ con_id }),
       });
       if (!response.ok) {
         console.error(
@@ -146,7 +144,7 @@ const DemandeContact = () => {
         return;
       }
       const updatedRequests = requests.map((request) =>
-        request.con_id === id ? { ...request, con_etat: "Refusé" } : request
+        request.con_id === id ? { ...request, con_etat: "Refuser" } : request
       );
       setRequests(updatedRequests);
     } catch (error) {
