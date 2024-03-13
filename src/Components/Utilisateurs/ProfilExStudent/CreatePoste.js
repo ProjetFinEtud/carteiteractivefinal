@@ -185,10 +185,17 @@ const Poste = () => {
   };
 
   const handleDateChange = (date, fieldName) => {
-    setModifiedPoste((prevState) => ({
-      ...prevState,
-      [fieldName]: date,
-    }));
+    if (date instanceof Date && !isNaN(date)) {
+      const isoDate = date.toISOString();
+      
+      setModifiedPoste((prevState) => ({
+        ...prevState,
+        [fieldName]: isoDate,
+      }));
+    } else {
+      console.error("Date invalide :", date);
+    }
+    
     setErrors((prevErrors) => ({
       ...prevErrors,
       [fieldName]: "",
