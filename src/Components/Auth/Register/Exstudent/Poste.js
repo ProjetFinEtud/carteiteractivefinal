@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
-import FormControl from '@mui/material/FormControl';
+import FormControl from "@mui/material/FormControl";
 export default function Poste({
   onFieldChange,
   onFieldChangeShow,
@@ -165,7 +165,7 @@ export default function Poste({
           </Select>
         </Grid>
         <Grid item xs={12} md={6}>
-          <FormControl fullWidth>
+          <FormControl fullWidth sx={{ display: "flex", alignItems: "center" }}>
             <InputLabel htmlFor="annee_fin">Fin</InputLabel>
             <Select
               labelId="annee_fin_label"

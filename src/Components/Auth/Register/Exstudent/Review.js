@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider'; 
+import Divider from '@mui/material/Divider';
+
 const Review = ({ formData }) => {
   const { nom, prenom, email, master, annee, domaine, localisation, nom_poste, nom_entreprise, description, annee_debut, annee_fin } = formData;
 
@@ -15,21 +16,17 @@ const Review = ({ formData }) => {
           Informations personnelles
         </Typography>
         <List disablePadding>
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="Nom Prénom" />
-            <Typography variant="body2">{nom + " " + prenom}</Typography>
+          <ListItem>
+            <ListItemText primary="Nom Prénom" secondary={`${nom} ${prenom}`} />
           </ListItem>
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="Adresse mail" />
-            <Typography variant="body2">{email}</Typography>
+          <ListItem>
+            <ListItemText primary="Adresse mail" secondary={email} />
           </ListItem>
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="Master et Année d'obtention" />
-            <Typography variant="body2">{master + " " + annee}</Typography>
+          <ListItem>
+            <ListItemText primary="Master et Année d'obtention" secondary={`${master} ${annee}`} />
           </ListItem>
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="Domaine" />
-            <Typography variant="body2">{domaine}</Typography>
+          <ListItem>
+            <ListItemText primary="Domaine" secondary={domaine} />
           </ListItem>
         </List>
       </Grid>
@@ -39,21 +36,17 @@ const Review = ({ formData }) => {
           Informations sur le poste
         </Typography>
         <List disablePadding>
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="Poste & Non de l'entreprise" />
-            <Typography variant="body2">{nom_poste + " " + nom_entreprise}</Typography>
+          <ListItem>
+            <ListItemText primary="Poste & Nom de l'entreprise" secondary={`${nom_poste} ${nom_entreprise}`} />
           </ListItem>
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="Description des missions" />
-            <Typography variant="body2">{description}</Typography>
+          <ListItem>
+            <ListItemText primary="Description des missions" secondary={description} />
           </ListItem>
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="Année Début & Année de Fin du poste" />
-            <Typography variant="body2">{annee_debut + " " + annee_fin}</Typography>
+          <ListItem>
+            <ListItemText primary="Année Début & Année de Fin du poste" secondary={`${annee_debut} ${annee_fin}`} />
           </ListItem>
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary="Localisation" />
-            <Typography variant="body2">{localisation}</Typography>
+          <ListItem>
+            <ListItemText primary="Localisation" secondary={localisation} />
           </ListItem>
         </List>
       </Grid>
