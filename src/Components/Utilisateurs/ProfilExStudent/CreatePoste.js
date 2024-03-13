@@ -101,7 +101,7 @@ const Poste = () => {
     const newErrors = { ...errors };
 
     Object.keys(modifiedPoste).forEach((key) => {
-      if (!modifiedPoste[key]) {
+      if (!modifiedPoste[key] && key !== "dateFin") {
         newErrors[key] = `Veuillez entrer ${key}`;
       }
     });
@@ -221,7 +221,7 @@ const Poste = () => {
       >
         <div className="container mt-5">
           <Button variant="success" onClick={() => handleAdd()}>
-            Ajouter un nouveau poste
+            Ajouter un ancien poste que vous avez occupé
           </Button>
           <BootstrapTable
             keyField="id"
@@ -247,8 +247,8 @@ const Poste = () => {
                   >
                     <option value="">Sélectionner un poste</option>
                     {prePostes.map((prePoste) => (
-                      <option key={prePoste.id} value={prePoste.nomPoste}>
-                        {prePoste.nomPoste}
+                      <option key={prePoste.pre_id} value={prePoste.pre_nom}>
+                        {prePoste.pre_nom}
                       </option>
                     ))}
                   </Form.Control>

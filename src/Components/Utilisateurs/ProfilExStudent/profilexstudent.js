@@ -24,7 +24,7 @@ const ProfilExStudent = () => {
     >
       <Tabs value={tabValue} onChange={handleTabChange}>
         <Tab value="userInfo" label="Vos informations" />
-        <Tab value="createposte" label="Créer un poste" />
+        <Tab value="createposte" label="Postes" />
         <Tab value="localisation" label="Changer votre localisation" />
         <Tab value="password" label="Changer le mot de passe" />
         <Tab value="delete" label="Supprimer votre compte" />
