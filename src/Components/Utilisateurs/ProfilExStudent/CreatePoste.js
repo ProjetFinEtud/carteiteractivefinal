@@ -18,7 +18,13 @@ const Poste = () => {
   useEffect(() => {
     const fetchPostes = async () => {
       try {
-        const response = await fetch("server/user/allPrePostes");
+        const response = await fetch("server/user/allPrePostes", {
+          headers: {
+            "Content-Type": "application/json",
+            accessToken: sessionStorage.getItem("accessToken"),
+          },
+        });
+        console.log(response)
         if (!response.ok) {
           throw new Error("Erreur lors de la récupération des postes.");
         }
