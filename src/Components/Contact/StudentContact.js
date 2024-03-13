@@ -157,12 +157,12 @@ const StudentContact = () => {
   return (
     <>
       <div className="container mt-5">
-        <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal show={showModal} onHide={() => setShowModal(false)} centered>
           <Modal.Header closeButton>
             <Modal.Title>Confirmation de suppression</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Êtes-vous sûr de vouloir supprimer cet élément ?
+            Êtes-vous sûr de vouloir supprimer votre demande ?
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowModal(false)}>

@@ -93,61 +93,76 @@ const UserInfo = () => {
   }
 
   return (
-    <div
-      style={{ padding: "20px", backgroundColor: "rgba(255, 255, 255, 0.8)" }}
-    >
-      <div>
-        <Avatar
-          alt="Avatar"
-          src={"/images/" + userData.exs_photo}
-          sx={{ width: 100, height: 100, margin: "10px" }}
-        />
-        <Button variant="contained" component="label">
-          Modifier votre image
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            style={{ display: "none" }}
-          />
-        </Button>
-      </div>
-      <TextField
-        label="Nom"
-        value={userData.exs_nom}
-        onChange={(e) => handleInputChange("exs_nom", e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Prénom"
-        value={userData.exs_prenom}
-        onChange={(e) => handleInputChange("exs_prenom", e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Adresse email"
-        value={userData.exs_email}
-        onChange={(e) => handleInputChange("exs_email", e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Description"
-        value={userData.exs_description}
-        onChange={(e) => handleInputChange("exs_description", e.target.value)}
-        fullWidth
-        margin="normal"
-        multiline
-        rows={4}
-      />
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-      <Button variant="contained" color="primary" onClick={handleSave}>
-        Enregistrer
-      </Button>
-    </div>
+    <Container maxWidth="sm">
+      <Box sx={{ padding: "20px", backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Informations personnelles
+        </Typography>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} align="center">
+            <Avatar
+              alt="Avatar"
+              src={"/images/" + userData.exs_photo}
+              sx={{ width: 100, height: 100, margin: "10px" }}
+            />
+            <Button variant="contained" component="label">
+              Modifier votre image
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+              />
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Nom"
+              value={userData.exs_nom}
+              onChange={(e) => handleInputChange("exs_nom", e.target.value)}
+              fullWidth
+              margin="normal"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Prénom"
+              value={userData.exs_prenom}
+              onChange={(e) => handleInputChange("exs_prenom", e.target.value)}
+              fullWidth
+              margin="normal"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Adresse email"
+              value={userData.exs_email}
+              onChange={(e) => handleInputChange("exs_email", e.target.value)}
+              fullWidth
+              margin="normal"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Description"
+              value={userData.exs_description}
+              onChange={(e) => handleInputChange("exs_description", e.target.value)}
+              fullWidth
+              margin="normal"
+              multiline
+              rows={4}
+            />
+          </Grid>
+          <Grid item xs={12} align="center">
+            {error && <Typography variant="body1" color="error">{error}</Typography>}
+            {successMessage && <Typography variant="body1" color="success">{successMessage}</Typography>}
+            <Button variant="contained" color="primary" onClick={handleSave}>
+              Enregistrer
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
+    </Container>
   );
 };
 
