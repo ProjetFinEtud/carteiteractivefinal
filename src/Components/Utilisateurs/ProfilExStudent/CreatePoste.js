@@ -182,6 +182,17 @@ const Poste = () => {
     return poste ? poste.pre_nom : "";
   };
 
+  const handleDateChange = (date, fieldName) => {
+    setModifiedPoste((prevState) => ({
+      ...prevState,
+      [fieldName]: date,
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [fieldName]: "",
+    }));
+  };
+
   const columns = [
     {
       dataField: "nomPoste",
