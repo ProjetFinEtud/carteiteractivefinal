@@ -97,42 +97,38 @@ const UserInfo = () => {
   }
 
   return (
-    <Box
-      sx={{
-        padding: "20px",
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
-        maxWidth: "600px",
-        margin: "auto",
-        marginTop: "50px",
-        borderRadius: "10px",
-        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-      }}
-    >
-      <Typography variant="h5" align="center" mb={3}>
-        Informations Personnelles
-      </Typography>
-      <Box display="flex" justifyContent="center" alignItems="center" mb={3}>
-        <Avatar
-          alt="Avatar"
-          src={"/images/" + userData.exs_photo}
-          sx={{ width: 100, height: 100, margin: "10px" }}
+    <div
+    style={{
+      padding: "20px",
+      backgroundColor: "rgba(255, 255, 255, 0.8)",
+      maxWidth: "400px",
+      margin: "auto",
+    }}
+  >
+    <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+      <Avatar
+        alt="Avatar"
+        src={"/images/" + userData.exs_photo}
+        sx={{ width: 100, height: 100, marginRight: "10px" }}
+      />
+      <Button variant="contained" component="label">
+        Modifier votre image
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          style={{ display: "none" }}
         />
-        <Button variant="contained" component="label">
-          Modifier votre image
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            style={{ display: "none" }}
-          />
-        </Button>
-      </Box>
+      </Button>
+    </div>
+    <div style={{ display: "flex", marginBottom: "10px" }}>
       <TextField
         label="Nom"
         value={userData.exs_nom}
         onChange={(e) => handleInputChange("exs_nom", e.target.value)}
         fullWidth
         margin="normal"
+        style={{ marginRight: "10px" }}
       />
       <TextField
         label="Prénom"
@@ -141,35 +137,31 @@ const UserInfo = () => {
         fullWidth
         margin="normal"
       />
-      <TextField
-        label="Adresse email"
-        value={userData.exs_email}
-        onChange={(e) => handleInputChange("exs_email", e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Description"
-        value={userData.exs_description}
-        onChange={(e) => handleInputChange("exs_description", e.target.value)}
-        fullWidth
-        margin="normal"
-        multiline
-        rows={4}
-      />
-      {error && <Typography color="error">{error}</Typography>}
-      {successMessage && (
-        <Typography color="success">{successMessage}</Typography>
-      )}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleSave}
-        fullWidth
-      >
-        Enregistrer
-      </Button>
-    </Box>
+    </div>
+    <TextField
+      label="Adresse email"
+      value={userData.exs_email}
+      onChange={(e) => handleInputChange("exs_email", e.target.value)}
+      fullWidth
+      margin="normal"
+      style={{ marginBottom: "10px" }}
+    />
+    <TextField
+      label="Description"
+      value={userData.exs_description}
+      onChange={(e) => handleInputChange("exs_description", e.target.value)}
+      fullWidth
+      margin="normal"
+      multiline
+      rows={4}
+      style={{ marginBottom: "10px" }}
+    />
+    {error && <p style={{ color: "red" }}>{error}</p>}
+    {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+    <Button variant="contained" color="primary" onClick={handleSave}>
+      Enregistrer
+    </Button>
+  </div>
   );
 };
 
