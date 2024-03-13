@@ -11,7 +11,7 @@ const Review = ({ formData }) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12}>
+      <Grid item xs={12} md={6}>
         <Typography variant="h6" gutterBottom>
           Informations personnelles
         </Typography>
@@ -30,8 +30,7 @@ const Review = ({ formData }) => {
           </ListItem>
         </List>
       </Grid>
-      <Divider orientation="vertical" flexItem variant="middle" />
-      <Grid item xs={12}>
+      <Grid item xs={12} md={6}>
         <Typography variant="h6" gutterBottom>
           Informations sur le poste
         </Typography>
