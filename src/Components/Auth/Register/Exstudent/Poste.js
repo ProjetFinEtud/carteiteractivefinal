@@ -166,6 +166,11 @@ export default function Poste({
         </Grid>
         <Grid item xs={12} md={6}>
           <FormControl fullWidth sx={{ display: "flex", alignItems: "center" }}>
+          <Tooltip title="Vous pouvez laisser ce champ vide si cela est votre poste actuel">
+              <IconButton aria-label="info">
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
             <InputLabel htmlFor="annee_fin">Fin</InputLabel>
             <Select
               labelId="annee_fin_label"
@@ -183,11 +188,6 @@ export default function Poste({
                 </MenuItem>
               ))}
             </Select>
-            <Tooltip title="Vous pouvez laisser ce champ vide si cela est votre poste actuel">
-              <IconButton aria-label="info">
-                <InfoIcon />
-              </IconButton>
-            </Tooltip>
           </FormControl>
         </Grid>
       </Grid>
