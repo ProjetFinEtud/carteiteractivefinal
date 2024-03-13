@@ -180,16 +180,19 @@ const Poste = () => {
   };
 
   const getNomPosteById = (postId) => {
+    console.log(postId)
+    console.log(prePostes)
     const poste = prePostes.find((poste) => poste.pre_id === postId);
     return poste ? poste.pre_nom : "";
   };
 
   const handleDateChange = (date, fieldName) => {
     if (date instanceof Date && !isNaN(date)) {
-      const year = date.getFullYear();
+      const isoDate = date.toISOString();
+      
       setModifiedPoste((prevState) => ({
         ...prevState,
-        [fieldName]: year,
+        [fieldName]: isoDate,
       }));
     } else {
       console.error("Date invalide :", date);
