@@ -89,8 +89,8 @@ const Poste = () => {
         margin="normal"
       >
         {postes.map((poste) => (
-          <MenuItem key={poste.id} value={poste.id}>
-            {poste.nom}
+          <MenuItem key={poste.pre_id} value={poste.pre_id}>
+            {poste.pre_nom}
           </MenuItem>
         ))}
       </TextField>
