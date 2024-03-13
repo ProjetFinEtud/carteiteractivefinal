@@ -239,7 +239,7 @@ export default function Register() {
             <Form.Text className="text-danger">{errors.validation}</Form.Text>
             <Stepper
               activeStep={activeStep}
-              sx={{ pt: 3, pb: 5, marginX: "auto" }}
+              sx={{ pt: 3, pb: 5, marginX: "auto", width: "100%" }}
             >
               {steps.map((label) => (
                 <Step key={label}>
