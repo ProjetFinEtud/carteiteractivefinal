@@ -70,8 +70,8 @@ const HomePage = () => {
   const handleEdit = (item) => {
     setSelectedItem(item);
     setEditing(true);
-    setNewTitle(item.title);
-    setNewText(item.text);
+    setNewTitle(item.acc_titre);
+    setNewText(item.acc_text);
     setShowModal(true);
   };
 

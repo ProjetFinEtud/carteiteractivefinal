@@ -30,7 +30,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"; 
 import { Link } from "react-router-dom";
-
+import WorkIcon from "@mui/icons-material/Work";
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -163,7 +163,7 @@ function Dashboard() {
               </ListItemButton>
               <ListItemButton onClick={() => toggleComponent("poste")}>
                 <ListItemIcon>
-                  <DashboardIcon />
+                  <WorkIcon />
                 </ListItemIcon>
                 <ListItemText primary="Postes" />
               </ListItemButton>
