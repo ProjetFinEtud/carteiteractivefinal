@@ -186,11 +186,10 @@ const Poste = () => {
 
   const handleDateChange = (date, fieldName) => {
     if (date instanceof Date && !isNaN(date)) {
-      const isoDate = date.toISOString();
-      
+      const year = date.getFullYear();
       setModifiedPoste((prevState) => ({
         ...prevState,
-        [fieldName]: isoDate,
+        [fieldName]: year,
       }));
     } else {
       console.error("Date invalide :", date);
