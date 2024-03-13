@@ -3,6 +3,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import Button from "react-bootstrap/Button";
 import Chat from "../Messages/Chat";
 import { database } from "../Messages/base";
+import Modal from "react-bootstrap/Modal";
 const DemandeContact = () => {
   const [requests, setRequests] = useState([]);
   const [selectedPseudo, setSelectedPseudo] = useState(null);
