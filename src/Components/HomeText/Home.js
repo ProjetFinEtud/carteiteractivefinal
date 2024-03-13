@@ -100,11 +100,11 @@ const HomePage = () => {
 
   const columns = [
     {
-      dataField: "title",
+      dataField: "acc_titre",
       text: "Titre",
     },
     {
-      dataField: "text",
+      dataField: "acc_texte",
       text: "Texte",
     },
     {
