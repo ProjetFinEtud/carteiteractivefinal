@@ -65,7 +65,7 @@ const StudentContact = () => {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
-          body: JSON.stringify({ con_id }),
+          body: JSON.stringify({ id }),
         }
       );
       if (!response.ok) {
