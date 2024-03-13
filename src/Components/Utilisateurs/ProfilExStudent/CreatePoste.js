@@ -206,6 +206,7 @@ const Poste = () => {
 
   const columns = [
     {
+      dataField: "nomPoste",
       text: "Nom du poste",
       formatter: (cell, row) => getNomPosteById(row.nomPoste),
     },
