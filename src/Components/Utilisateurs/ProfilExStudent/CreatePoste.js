@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import MenuItem from '@mui/material/MenuItem';
 
 const Poste = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,25 @@ const Poste = () => {
     dateFin: "",
   });
   const [error, setError] = useState("");
-  const [success, setSucess] = useState("");
+  const [success, setSuccess] = useState("");
+  const [postes, setPostes] = useState([]);
+
+  useEffect(() => {
+    const fetchPostes = async () => {
+      try {
+        const response = await fetch("server/allPrePostes");
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des postes.");
+        }
+        const data = await response.json();
+        setPostes(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchPostes();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,12 +38,18 @@ const Poste = () => {
       ...formData,
       [name]: value,
     });
-    setSucess("")
-    setError("")
+    setSuccess("");
+    setError("");
   };
 
   const handleCreatePoste = async () => {
-    if (!formData.nomPoste || !formData.descriptionPoste || !formData.nomEntreprise || !formData.dateDebut || !formData.dateFin) {
+    if (
+      !formData.nomPoste ||
+      !formData.descriptionPoste ||
+      !formData.nomEntreprise ||
+      !formData.dateDebut ||
+      !formData.dateFin
+    ) {
       setError("Veuillez remplir tous les champs.");
       return;
     }
@@ -44,24 +69,31 @@ const Poste = () => {
         throw new Error(errorMessage);
       }
 
-      setSucess("Votre poste a été ajouter avec succès")
+      setSuccess("Votre poste a été ajouté avec succès");
 
-      window.location.reload(); 
+      window.location.reload();
     } catch (error) {
       setError(error.message);
     }
   };
 
   return (
-    <div style={{ padding: "20px", backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
+    <div style={{ padding: "20px", backgroundColor: "rgba(255, 255, 255, 0.8)", maxWidth: "400px" }}>
       <TextField
+        select
         label="Nom du poste"
         name="nomPoste"
         value={formData.nomPoste}
         onChange={handleChange}
         fullWidth
         margin="normal"
-      />
+      >
+        {postes.map((poste) => (
+          <MenuItem key={poste.id} value={poste.id}>
+            {poste.nom}
+          </MenuItem>
+        ))}
+      </TextField>
       <TextField
         label="Description du poste"
         name="descriptionPoste"
