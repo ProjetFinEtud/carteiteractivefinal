@@ -42,7 +42,7 @@ const Review = ({ formData }) => {
             <ListItemText primary="Description des missions" secondary={description} />
           </ListItem>
           <ListItem>
-            <ListItemText primary="Année Début & Année de Fin du poste" secondary={`${annee_debut} ${annee_fin}`} />
+            <ListItemText primary="Année Début -- Fin" secondary={`${annee_debut} "--" ${annee_fin}`} />
           </ListItem>
           <ListItem>
             <ListItemText primary="Localisation" secondary={localisation} />

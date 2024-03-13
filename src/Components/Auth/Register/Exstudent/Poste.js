@@ -176,7 +176,7 @@ export default function Poste({
           md={6}
           sx={{ display: "flex", alignItems: "center" }}
         >
-          <InputLabel sx={{ mr: 3 }}>Fin</InputLabel>
+          <InputLabel sx={{ mr: 2 }}>Fin</InputLabel>
           <Tooltip title="Vous pouvez laisser ce champ vide si cela est votre poste actuel">
             <IconButton aria-label="info">
               <InfoIcon />
