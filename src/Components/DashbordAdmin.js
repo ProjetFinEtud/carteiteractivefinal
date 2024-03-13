@@ -22,11 +22,13 @@ import UserDesactived from "./Utilisateurs/Desactive";
 import UserActived from "./Utilisateurs/Active";
 import Domaine from "./Domaine/Domaine";
 import Master from "./Master/Master";
+import HomeText from "./HomeText/Home";
+import Poste from "./Poste/Poste";
 import ProfilAdmin from "./Utilisateurs/ProfilAdmin/profiladmin";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // Import de l'icône de profil
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"; 
 import { Link } from "react-router-dom";
 
 const AppBar = styled(MuiAppBar, {
@@ -76,9 +78,6 @@ const Drawer = styled(MuiDrawer, {
 function Dashboard() {
   const [open, setOpen] = React.useState(true);
   const [currentComponent, setCurrentComponent] = useState("profil"); 
-  const [showComponentDomaine, setShowComponentDomaine] = useState(false); 
-  const [showComponentMaster, setShowComponentMaster] = useState(false); 
-  const [showComponentUser, setShowComponentUser] = useState(false); 
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -156,6 +155,18 @@ function Dashboard() {
                 </ListItemIcon>
                 <ListItemText primary="Domaines" />
               </ListItemButton>
+              <ListItemButton onClick={() => toggleComponent("hometext")}>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Accueil" />
+              </ListItemButton>
+              <ListItemButton onClick={() => toggleComponent("poste")}>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Postes" />
+              </ListItemButton>
               <ListItemButton onClick={() => toggleComponent("user")}>
                 <ListItemIcon>
                   <PeopleIcon />
@@ -200,6 +211,8 @@ function Dashboard() {
         {currentComponent === "profil" && <ProfilAdmin />}
         {currentComponent === "domaine" && <Domaine />}
         {currentComponent === "master" && <Master />}
+        {currentComponent === "homtext" && <HomeText />}
+        {currentComponent === "poste" && <Poste />}
         {currentComponent === "user" && (
           <div style={{ height: "100vh", width: "100%" }}>
             <Box
