@@ -71,7 +71,7 @@ const HomePage = () => {
     setSelectedItem(item);
     setEditing(true);
     setNewTitle(item.acc_titre);
-    setNewText(item.acc_text);
+    setNewText(item.acc_texte);
     setShowModal(true);
   };
 
