@@ -29,6 +29,8 @@ const Poste = () => {
           throw new Error("Erreur lors de la récupération des postes.");
         }
         const data = await response.json();
+        console.log(data)
+        
         setPostes(data);
       } catch (error) {
         setError(error.message);
