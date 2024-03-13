@@ -306,11 +306,13 @@ const Poste = () => {
                 <Form.Group controlId="formDateDebut">
                   <Form.Label>Date de début</Form.Label>
                   <DatePicker
-                    views={["year"]}
-                    label=""
-                    value={modifiedPoste ? modifiedPoste.dateDebut : ""}
+                    selected={
+                      modifiedPoste ? new Date(modifiedPoste.dateDebut) : null
+                    }
                     onChange={(date) => handleDateChange(date, "dateDebut")}
-                    renderInput={(params) => <TextField {...params} />}
+                    dateFormat="yyyy"
+                    showYearPicker
+                    className="form-control"
                   />
                   <Form.Text className="text-danger">
                     {errors.dateDebut}
@@ -320,11 +322,13 @@ const Poste = () => {
                 <Form.Group controlId="formDateFin">
                   <Form.Label>Date de fin</Form.Label>
                   <DatePicker
-                    views={["year"]}
-                    label=""
-                    value={modifiedPoste ? modifiedPoste.dateFin : ""}
+                    selected={
+                      modifiedPoste ? new Date(modifiedPoste.dateFin) : null
+                    }
                     onChange={(date) => handleDateChange(date, "dateFin")}
-                    renderInput={(params) => <TextField {...params} />}
+                    dateFormat="yyyy"
+                    showYearPicker
+                    className="form-control"
                   />
                   <Form.Text className="text-danger">
                     {errors.dateFin}
