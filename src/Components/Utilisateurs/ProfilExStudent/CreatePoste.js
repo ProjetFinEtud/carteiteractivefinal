@@ -6,8 +6,8 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { DatePicker } from '@mui/x-date-pickers';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 const Poste = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
