@@ -19,15 +19,12 @@ export const AuthProvider = ({ children }) => {
 
         if (response.status === 202) {
           setAuthSession(true);
-          setPageAccess("dashbordAdmin");
           setAuthAdmin(true)
         } else if (response.status === 203) {
           setAuthSession(true);
-          setPageAccess("dashbordExstudent");
           setAuthExs(true)
         } else if (response.status === 204) {
           setAuthSession(true);
-          setPageAccess("dashbordStudent");
           setAuthStu(true)
         } else {
           setAuthSession(false);
@@ -41,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ authSession, pageAccess }}>
+    <AuthContext.Provider value={{ authSession, authAdmin, authExs, authStu }}>
       {children}
     </AuthContext.Provider>
   );
