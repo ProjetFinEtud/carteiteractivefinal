@@ -36,24 +36,24 @@ function CarouselHome() {
   // Données statiques à afficher si la table est vide
   const staticItems = [
     {
-      acc_tire: "Contexte de l'application",
+      acc_tire: "Bienvenue sur la carte interactive",
       acc_texte:
-        "De tout temps, les établissements d'enseignement supérieur ont joué un rôle crucial dans la formation et l'épanouissement des individus...",
+        "Voir ou se trouve vos camarades, entreprendre des projets avec des jeunes de votre ancien Master, cherchez des talents dans votre ancien Master tout ça est possible",
     },
     {
-      acc_titre: "Défis des diplômés",
+      acc_titre: "Inscrivez vous et commencer l'aventure",
       acc_texte:
-        "Lorsqu'il s'agit de transition vers le monde professionnel, les diplômés font face à divers défis...",
+        "Une aventure, pleins de bienveillance et de soutient mutuel",
     },
     {
       acc_titre: "Objectif de l'application",
       acc_texte:
-        "Cette application vise principalement à faciliter l'insertion professionnelle des anciens élèves en mettant en relation les diplômés...",
+        "Mettre en relation les anciens élèves de nos Master et les étudiants actuels pour permettre une insertion professionnel facile",
     },
     {
       acc_titre: "Fonctionnalités de l'application",
       acc_texte:
-        "Les fonctionnalités comprennent la possibilité pour les anciens élèves de partager leur expérience, mettre en avant leur parcours...",
+        "Carte, Filtrage, Tchat... pleins d'autres suprise à venir",
     },
   ];
 

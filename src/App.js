@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Register from "./Components/Register";
 import ForgotPassword from "./Components/Auth/ForgotPassword/ForgotPassword";
@@ -18,19 +19,20 @@ import Politique from "./Components/Politique";
 import Logout from "./Components/logout";
 import ParticlesBg from "particles-bg";
 import NotFound from "./NotFound";
-function App() {
-  return (
-    <div className="with-sidebar">
-      <ParticlesBg type="circle" bg={true} />
+import { useAuth } from "./Components/AuthContext";
 
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route exact path="/" element={<Outlet />}>
-            <Route index element={<Acceuil />} />
-            <Route path="forgotpassword" element={<ForgotPassword />} />
-            <Route path="register" element={<Register />} />
-            <Route path="connexion" element={<Connexion />} />
+function App() {
+  const { authSession } = useAuth();
+
+  const renderRoutes = () => {
+    return (
+      <Routes>
+        <Route index element={<Acceuil />} />
+        <Route path="forgotpassword" element={<ForgotPassword />} />
+        <Route path="register" element={<Register />} />
+        <Route path="connexion" element={<Connexion />} />
+        {authSession ? (
+          <>
             <Route path="carte" element={<Map />} />
             <Route path="userdesactived" element={<UserDesactived />} />
             <Route path="useractived" element={<UserActived />} />
@@ -40,13 +42,22 @@ function App() {
             <Route path="dashbordAdmin" element={<DashboardAdmin />} />
             <Route path="dashbordExstudent" element={<DashboardExStudent />} />
             <Route path="dashbordStudent" element={<DashboardStudent />} />
-            <Route path="politique" element={<Politique />} />
             <Route path="logout" element={<Logout />} />
-            <Route path="/*" element={<NotFound />} />
-          </Route>
-        </Routes>
+          </>
+        ) : null}
+        <Route path="politique" element={<Politique />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    );
+  };
+
+  return (
+    <div className="with-sidebar">
+      <ParticlesBg type="circle" bg={true} />
+      <BrowserRouter>
+        <NavBar />
+        {renderRoutes()}
       </BrowserRouter>
-      
     </div>
   );
 }
