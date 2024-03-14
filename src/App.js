@@ -22,7 +22,7 @@ import NotFound from "./NotFound";
 import { useAuth } from "./Components/AuthContext";
 
 function App() {
-  const { authSession } = useAuth();
+  const { authSession, authAdmin, authExs, authStu } = useAuth();
 
   const renderRoutes = () => {
     return (
@@ -34,15 +34,29 @@ function App() {
         {authSession ? (
           <>
             <Route path="carte" element={<Map />} />
+
+            <Route path="updatepass" element={<UpdatePass />} />
+
+            <Route path="logout" element={<Logout />} />
+          </>
+        ) : null}
+        {authAdmin ? (
+          <>
             <Route path="userdesactived" element={<UserDesactived />} />
             <Route path="useractived" element={<UserActived />} />
             <Route path="domaine" element={<Domaine />} />
-            <Route path="updatepass" element={<UpdatePass />} />
             <Route path="master" element={<Master />} />
             <Route path="dashbordAdmin" element={<DashboardAdmin />} />
+          </>
+        ) : null}
+        {authExs ? (
+          <>
             <Route path="dashbordExstudent" element={<DashboardExStudent />} />
+          </>
+        ) : null}
+        {authStu ? (
+          <>
             <Route path="dashbordStudent" element={<DashboardStudent />} />
-            <Route path="logout" element={<Logout />} />
           </>
         ) : null}
         <Route path="politique" element={<Politique />} />

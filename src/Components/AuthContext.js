@@ -4,7 +4,9 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [authSession, setAuthSession] = useState(false);
-  const [pageAccess, setPageAccess] = useState("");
+  const [authAdmin, setAuthAdmin] = useState(false);
+  const [authExs, setAuthExs] = useState(false);
+  const [authStu, setAuthStu] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,12 +20,15 @@ export const AuthProvider = ({ children }) => {
         if (response.status === 202) {
           setAuthSession(true);
           setPageAccess("dashbordAdmin");
+          setAuthAdmin(true)
         } else if (response.status === 203) {
           setAuthSession(true);
           setPageAccess("dashbordExstudent");
+          setAuthExs(true)
         } else if (response.status === 204) {
           setAuthSession(true);
           setPageAccess("dashbordStudent");
+          setAuthStu(true)
         } else {
           setAuthSession(false);
         }
