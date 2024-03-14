@@ -23,7 +23,7 @@ function CarouselHome() {
         if (data.length === 0) {
           setItems(staticItems);
         } else {
-          setItems(data);
+          setItems(data.columns);
         }
       } catch (error) {
         console.error("Erreur:", error.message);
