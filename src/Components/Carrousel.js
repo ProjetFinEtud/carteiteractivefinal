@@ -9,16 +9,20 @@ function CarouselHome() {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const response = await fetch("/server/user/allAcc");
+        const response = await fetch("/server/user/allAcc",
+        {
+          headers: {
+            accessToken: sessionStorage.getItem("accessToken"),
+          },
+        }
+      );
         if (!response.ok) {
           throw new Error("Erreur lors de la récupération des données");
         }
         const data = await response.json();
         if (data.length === 0) {
-          // Si la table est vide, utilisez les données statiques
           setItems(staticItems);
         } else {
-          // Sinon, utilisez les données de la table
           setItems(data);
         }
       } catch (error) {
