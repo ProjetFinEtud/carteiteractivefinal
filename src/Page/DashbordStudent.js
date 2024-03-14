@@ -11,26 +11,17 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import SchoolIcon from "@mui/icons-material/School";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleIcon from "@mui/icons-material/People";
 import LayersIcon from "@mui/icons-material/Layers";
-import UserDesactived from "./Utilisateurs/Desactive";
-import UserActived from "./Utilisateurs/Active";
-import Domaine from "./Domaine/Domaine";
-import Master from "./Master/Master";
-import HomeText from "./HomeText/Home";
-import Poste from "./Poste/Poste";
-import ProfilAdmin from "./Utilisateurs/ProfilAdmin/profiladmin";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"; 
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import { Link } from "react-router-dom";
-import WorkIcon from "@mui/icons-material/Work";
+import Contact from "../Components/Contact/StudentContact";
+import Profil from "../Components/Utilisateurs/ProfilStudent/profilstudent";
+
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -77,23 +68,12 @@ const Drawer = styled(MuiDrawer, {
 
 function Dashboard() {
   const [open, setOpen] = React.useState(true);
-  const [currentComponent, setCurrentComponent] = useState("profil"); 
+  const [currentComponent, setCurrentComponent] = useState("profil");
 
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  const [value, setValue] = useState("userdesactived"); 
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const toggleComponent = (componentName) => {
-    if (currentComponent !== componentName) {
-      setCurrentComponent(componentName); 
-    }
-  };
   return (
     <ThemeProvider theme={createTheme()}>
       <Box sx={{ display: "flex", paddingTop:"60px" }}>
@@ -123,7 +103,7 @@ function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Page Admin
+              Compte étudiant
             </Typography>
           </Toolbar>
         </AppBar>
@@ -143,41 +123,11 @@ function Dashboard() {
           <Divider />
           <List component="nav">
             <React.Fragment>
-              <ListItemButton onClick={() => toggleComponent("profil")}>
+              <ListItemButton onClick={() => setCurrentComponent("profil")}>
                 <ListItemIcon>
                   <AccountCircleIcon />
                 </ListItemIcon>
                 <ListItemText primary="Profil" />
-              </ListItemButton>
-              <ListItemButton onClick={() => toggleComponent("domaine")}>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Domaines" />
-              </ListItemButton>
-              <ListItemButton onClick={() => toggleComponent("hometext")}>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Accueil" />
-              </ListItemButton>
-              <ListItemButton onClick={() => toggleComponent("poste")}>
-                <ListItemIcon>
-                  <WorkIcon />
-                </ListItemIcon>
-                <ListItemText primary="Postes" />
-              </ListItemButton>
-              <ListItemButton onClick={() => toggleComponent("user")}>
-                <ListItemIcon>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Utilisateurs" />
-              </ListItemButton>
-              <ListItemButton onClick={() => toggleComponent("master")}>
-                <ListItemIcon>
-                  <SchoolIcon />
-                </ListItemIcon>
-                <ListItemText primary="Master" />
               </ListItemButton>
               <ListItemButton component={Link} to="/carte">
                 <ListItemIcon>
@@ -185,66 +135,25 @@ function Dashboard() {
                 </ListItemIcon>
                 <ListItemText primary="Carte" />
               </ListItemButton>
+              <ListItemButton onClick={() => setCurrentComponent("contact")}>
+                <ListItemIcon>
+                  <ConnectWithoutContactIcon />
+                </ListItemIcon>
+                <ListItemText primary="Contacts" />
+              </ListItemButton>
               <ListItemButton component={Link} to="/logout">
                 <ListItemIcon>
                   <ExitToAppIcon />
                 </ListItemIcon>
-                <ListItemText primary="Déconnection" />
+                <ListItemText primary="Déconnexion" />
               </ListItemButton>
             </React.Fragment>
             <Divider sx={{ my: 1 }} />
           </List>
         </Drawer>
-        {/* <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
-          }}
-        > */}
         <Toolbar />
-        {currentComponent === "profil" && <ProfilAdmin />}
-        {currentComponent === "domaine" && <Domaine />}
-        {currentComponent === "master" && <Master />}
-        {currentComponent === "hometext" && <HomeText />}
-        {currentComponent === "poste" && <Poste />}
-        {currentComponent === "user" && (
-          <div style={{ height: "100vh", width: "100%" }}>
-            <Box
-              width="100%"
-              height="90%"
-              sx={{
-                overflowY: "auto",
-                "&::-webkit-scrollbar": {
-                  display: "none",
-                },
-                scrollbarWidth: "none",
-              }}
-            >
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor="primary"
-                textColor="white"
-                centered
-                variant="fullWidth"
-                sx={{ bgcolor: "white.main" }}
-              >
-                <Tab value="userdesactived" label="Utilisateurs Désactivés" />
-                <Tab value="useractived" label="Utilisateurs Activés" />
-              </Tabs>
-              <Box sx={{ p: 3 }}>
-                {value === "userdesactived" && <UserDesactived />}
-                {value === "useractived" && <UserActived />}
-              </Box>
-            </Box>
-          </div>
-        )}
+        {currentComponent === "contact" && <Contact />}
+        {currentComponent === "profil" && <Profil />}
       </Box>
     </ThemeProvider>
   );

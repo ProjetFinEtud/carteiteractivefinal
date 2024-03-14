@@ -11,18 +11,26 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import SchoolIcon from "@mui/icons-material/School";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PeopleIcon from "@mui/icons-material/People";
 import LayersIcon from "@mui/icons-material/Layers";
+import UserDesactived from "../Components/Utilisateurs/Desactive";
+import UserActived from "../Components/Utilisateurs/Active";
+import Domaine from "../Components/Domaine/Domaine";
+import Master from "../Components/Master/Master";
+import HomeText from "../Components/HomeText/Home";
+import Poste from "../Components/Poste/Poste";
+import ProfilAdmin from "../Components/Utilisateurs/ProfilAdmin/profiladmin";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // Import de l'icône de profil
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"; 
 import { Link } from "react-router-dom";
-import Contact from "./Contact/ExstudentContact";
-import Demande from "./Contact/DemandeContact";
-import Profil from "./Utilisateurs/ProfilExStudent/profilexstudent";
-import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
-
+import WorkIcon from "@mui/icons-material/Work";
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -69,12 +77,23 @@ const Drawer = styled(MuiDrawer, {
 
 function Dashboard() {
   const [open, setOpen] = React.useState(true);
-  const [currentComponent, setCurrentComponent] = useState("profil");
+  const [currentComponent, setCurrentComponent] = useState("profil"); 
 
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
+  const [value, setValue] = useState("userdesactived"); 
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const toggleComponent = (componentName) => {
+    if (currentComponent !== componentName) {
+      setCurrentComponent(componentName); 
+    }
+  };
   return (
     <ThemeProvider theme={createTheme()}>
       <Box sx={{ display: "flex", paddingTop:"60px" }}>
@@ -104,7 +123,7 @@ function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Compte ancien étudiant
+              Page Admin
             </Typography>
           </Toolbar>
         </AppBar>
@@ -124,24 +143,42 @@ function Dashboard() {
           <Divider />
           <List component="nav">
             <React.Fragment>
-              <ListItemButton onClick={() => setCurrentComponent("profil")}>
+              <ListItemButton onClick={() => toggleComponent("profil")}>
                 <ListItemIcon>
                   <AccountCircleIcon />
                 </ListItemIcon>
                 <ListItemText primary="Profil" />
               </ListItemButton>
-              <ListItemButton onClick={() => setCurrentComponent("demande")}>
+              <ListItemButton onClick={() => toggleComponent("domaine")}>
                 <ListItemIcon>
-                  <ConnectWithoutContactIcon />
+                  <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText primary="Contacts" />
+                <ListItemText primary="Domaines" />
               </ListItemButton>
-              {/* <ListItemButton onClick={() => setCurrentComponent("contact")}>
+              <ListItemButton onClick={() => toggleComponent("hometext")}>
                 <ListItemIcon>
-                  <ConnectWithoutContactIcon />
+                  <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText primary="Demande de contact" />
-              </ListItemButton> */}
+                <ListItemText primary="Accueil" />
+              </ListItemButton>
+              <ListItemButton onClick={() => toggleComponent("poste")}>
+                <ListItemIcon>
+                  <WorkIcon />
+                </ListItemIcon>
+                <ListItemText primary="Postes" />
+              </ListItemButton>
+              <ListItemButton onClick={() => toggleComponent("user")}>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Utilisateurs" />
+              </ListItemButton>
+              <ListItemButton onClick={() => toggleComponent("master")}>
+                <ListItemIcon>
+                  <SchoolIcon />
+                </ListItemIcon>
+                <ListItemText primary="Master" />
+              </ListItemButton>
               <ListItemButton component={Link} to="/carte">
                 <ListItemIcon>
                   <LayersIcon />
@@ -152,16 +189,62 @@ function Dashboard() {
                 <ListItemIcon>
                   <ExitToAppIcon />
                 </ListItemIcon>
-                <ListItemText primary="Déconnexion" />
+                <ListItemText primary="Déconnection" />
               </ListItemButton>
             </React.Fragment>
             <Divider sx={{ my: 1 }} />
           </List>
         </Drawer>
+        {/* <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+          }}
+        > */}
         <Toolbar />
-        {currentComponent === "demande" && <Demande />}
-        {currentComponent === "contact" && <Contact />}
-        {currentComponent === "profil" && <Profil />}
+        {currentComponent === "profil" && <ProfilAdmin />}
+        {currentComponent === "domaine" && <Domaine />}
+        {currentComponent === "master" && <Master />}
+        {currentComponent === "hometext" && <HomeText />}
+        {currentComponent === "poste" && <Poste />}
+        {currentComponent === "user" && (
+          <div style={{ height: "100vh", width: "100%" }}>
+            <Box
+              width="100%"
+              height="90%"
+              sx={{
+                overflowY: "auto",
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                scrollbarWidth: "none",
+              }}
+            >
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="white"
+                centered
+                variant="fullWidth"
+                sx={{ bgcolor: "white.main" }}
+              >
+                <Tab value="userdesactived" label="Utilisateurs Désactivés" />
+                <Tab value="useractived" label="Utilisateurs Activés" />
+              </Tabs>
+              <Box sx={{ p: 3 }}>
+                {value === "userdesactived" && <UserDesactived />}
+                {value === "useractived" && <UserActived />}
+              </Box>
+            </Box>
+          </div>
+        )}
       </Box>
     </ThemeProvider>
   );

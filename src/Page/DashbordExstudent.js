@@ -16,11 +16,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import LayersIcon from "@mui/icons-material/Layers";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // Import de l'icône de profil
 import { Link } from "react-router-dom";
-import Contact from "./Contact/StudentContact";
-import Profil from "./Utilisateurs/ProfilStudent/profilstudent";
+import Contact from "../Components/Contact/ExstudentContact";
+import Demande from "../Components/Contact/DemandeContact";
+import Profil from "../Components/Utilisateurs/ProfilExStudent/profilexstudent";
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -103,7 +104,7 @@ function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Compte étudiant
+              Compte ancien étudiant
             </Typography>
           </Toolbar>
         </AppBar>
@@ -129,17 +130,23 @@ function Dashboard() {
                 </ListItemIcon>
                 <ListItemText primary="Profil" />
               </ListItemButton>
+              <ListItemButton onClick={() => setCurrentComponent("demande")}>
+                <ListItemIcon>
+                  <ConnectWithoutContactIcon />
+                </ListItemIcon>
+                <ListItemText primary="Contacts" />
+              </ListItemButton>
+              {/* <ListItemButton onClick={() => setCurrentComponent("contact")}>
+                <ListItemIcon>
+                  <ConnectWithoutContactIcon />
+                </ListItemIcon>
+                <ListItemText primary="Demande de contact" />
+              </ListItemButton> */}
               <ListItemButton component={Link} to="/carte">
                 <ListItemIcon>
                   <LayersIcon />
                 </ListItemIcon>
                 <ListItemText primary="Carte" />
-              </ListItemButton>
-              <ListItemButton onClick={() => setCurrentComponent("contact")}>
-                <ListItemIcon>
-                  <ConnectWithoutContactIcon />
-                </ListItemIcon>
-                <ListItemText primary="Contacts" />
               </ListItemButton>
               <ListItemButton component={Link} to="/logout">
                 <ListItemIcon>
@@ -152,6 +159,7 @@ function Dashboard() {
           </List>
         </Drawer>
         <Toolbar />
+        {currentComponent === "demande" && <Demande />}
         {currentComponent === "contact" && <Contact />}
         {currentComponent === "profil" && <Profil />}
       </Box>

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import Register from "./Components/Register";
+import Register from "./Page/Register";
 import ForgotPassword from "./Components/Auth/ForgotPassword/ForgotPassword";
 import Connexion from "./Components/Auth/Login/Login";
 
@@ -10,16 +10,16 @@ import UserActived from "./Components/Utilisateurs/Active";
 import Domaine from "./Components/Domaine/Domaine";
 import UpdatePass from "./Components/Utilisateurs/Update";
 import Master from "./Components/Master/Master";
-import DashboardAdmin from "./Components/DashbordAdmin";
-import DashboardExStudent from "./Components/DashbordExstudent";
-import DashboardStudent from "./Components/DashbordStudent";
-import Acceuil from "./Components/Accueil";
-import NavBar from "./Components/NavBar";
-import Politique from "./Components/Politique";
-import Logout from "./Components/logout";
+import DashboardAdmin from "./Page/DashbordAdmin";
+import DashboardExStudent from "./Page/DashbordExstudent";
+import DashboardStudent from "./Page/DashbordStudent";
+import Acceuil from "./Page/Accueil";
+import NavBar from "./Components/Autres/NavBar";
+import Politique from "./Page/Politique";
+import Logout from "./Components/Autres/logout";
 import ParticlesBg from "particles-bg";
-import NotFound from "./NotFound";
-import { useAuth } from "./Components/AuthContext";
+import NotFound from "./Page/NotFound";
+import { useAuth } from "./Components/Autres/AuthContext";
 
 function App() {
   const { authSession, authAdmin, authExs, authStu } = useAuth();
@@ -31,11 +31,10 @@ function App() {
         <Route path="forgotpassword" element={<ForgotPassword />} />
         <Route path="register" element={<Register />} />
         <Route path="connexion" element={<Connexion />} />
+        <Route path="updatepass" element={<UpdatePass />} />
         {authSession ? (
           <>
             <Route path="carte" element={<Map />} />
-
-            <Route path="updatepass" element={<UpdatePass />} />
 
             <Route path="logout" element={<Logout />} />
           </>

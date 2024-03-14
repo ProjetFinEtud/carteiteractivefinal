@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import RegisterExs from "./Auth/Register/Exstudent/Register"
-import RegisterStu from "./Auth/Register/Student/Register"
+import RegisterExs from "../Components/Auth/Register/Exstudent/Register"
+import RegisterStu from "../Components/Auth/Register/Student/Register"
 
 function Register() {
   const [showExs, setShowExs] = useState(true);

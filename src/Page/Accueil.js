@@ -1,5 +1,5 @@
 import * as React from "react";
-import CarouselHome from "./Carrousel"
+import CarouselHome from "../Components/Autres/Carrousel"
 
 
 function Acceuil(){

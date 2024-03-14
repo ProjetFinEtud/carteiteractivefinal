@@ -9,7 +9,7 @@ function CarouselHome() {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const response = await fetch("/server/user/allAcc",
+        const response = await fetch("/server/auth/allAcc",
         {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
@@ -33,7 +33,7 @@ function CarouselHome() {
     fetchHomeData();
   }, []);
 
-  // Données statiques à afficher si la table est vide
+
   const staticItems = [
     {
       acc_tire: "Bienvenue sur la carte interactive",
