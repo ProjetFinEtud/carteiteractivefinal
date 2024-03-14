@@ -68,7 +68,7 @@ const HomePage = () => {
   };
 
   const handleEdit = (item) => {
-    setSelectedItem(item);
+    setSelectedItem(item.acc_id);
     setEditing(true);
     setNewTitle(item.acc_titre);
     setNewText(item.acc_texte);
@@ -77,7 +77,7 @@ const HomePage = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`/server/user/updateAcc/${selectedItem.id}`, {
+      const response = await fetch(`/server/user/updateAcc/${selectedItem}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

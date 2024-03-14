@@ -65,7 +65,7 @@ const PrePostePage = () => {
   };
 
   const handleEdit = (item) => {
-    setSelectedItem(item);
+    setSelectedItem(item.pre_id);
     setEditing(true);
     setNewNom(item.pre_nom);
     setShowModal(true);
@@ -73,7 +73,7 @@ const PrePostePage = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`/server/user/updatePreposte/${selectedItem.id}`, {
+      const response = await fetch(`/server/user/updatePreposte/${selectedItem}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
