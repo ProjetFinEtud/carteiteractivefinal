@@ -67,7 +67,7 @@ const PrePostePage = () => {
   const handleEdit = (item) => {
     setSelectedItem(item);
     setEditing(true);
-    setNewNom(item.nom);
+    setNewNom(item.pre_nom);
     setShowModal(true);
   };
 
