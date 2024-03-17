@@ -61,7 +61,8 @@ export default function Login() {
     if (!formIsValid) {
       return;
     } else {
-      const apiResponse = await fetch("/server/auth/login", {
+      //const apiResponse = await fetch("/server/auth/login", {
+      const apiResponse = await fetch("/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

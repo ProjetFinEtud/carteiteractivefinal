@@ -18,7 +18,8 @@ const PrePostePage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/server/user/allPrePostes",
+      //const response = await fetch("/server/user/allPrePostes",
+      const response = await fetch("/poste/allPrePostes",
       {
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
@@ -44,7 +45,8 @@ const PrePostePage = () => {
 
   const handleAdd = async () => {
     try {
-      const response = await fetch("/server/user/createPreposte", {
+     // const response = await fetch("/server/user/createPreposte", {
+      const response = await fetch("/poste/createPreposte", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +75,8 @@ const PrePostePage = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`/server/user/updatePreposte/${selectedItem}`, {
+      //const response = await fetch(`/server/user/updatePreposte/${selectedItem}`, {
+      const response = await fetch(`/poste/updatePreposte/${selectedItem}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

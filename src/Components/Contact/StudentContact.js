@@ -15,7 +15,8 @@ const StudentContact = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("server/user/allRequestStuContact", {
+       // const response = await fetch("server/user/allRequestStuContact", {
+        const response = await fetch("/contact/allRequestStuContact", {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
@@ -70,7 +71,8 @@ const StudentContact = () => {
     const id = deleteId
     const msg_id = selectedMessageId
     try {
-      const response = await fetch(`server/user/deleteRequestContact/${id}`, {
+      //const response = await fetch(`server/user/deleteRequestContact/${id}`, {
+      const response = await fetch(`/contact/deleteRequestContact/${id}`, {
         method: "DELETE",
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),

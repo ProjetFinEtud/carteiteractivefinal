@@ -19,7 +19,8 @@ const HomePage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/server/user/allAcc",
+     // const response = await fetch("/server/user/allAcc",
+      const response = await fetch("/accueil/allAcc",
       {
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
@@ -46,7 +47,8 @@ const HomePage = () => {
 
   const handleAdd = async () => {
     try {
-      const response = await fetch("/server/user/addAcc", {
+      //const response = await fetch("/server/user/addAcc", {
+      const response = await fetch("/accueil/addAcc", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +79,8 @@ const HomePage = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`/server/user/updateAcc/${selectedItem}`, {
+      //const response = await fetch(`/server/user/updateAcc/${selectedItem}`, {
+      const response = await fetch(`/accueil/updateAcc/${selectedItem}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

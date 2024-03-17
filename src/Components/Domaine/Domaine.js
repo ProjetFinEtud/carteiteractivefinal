@@ -23,7 +23,8 @@ const Domaine = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "/server/domaine/alldomaines",
+          //"/server/domaine/alldomaines",
+          "/domaine/alldomaines",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -129,8 +130,10 @@ const Domaine = () => {
       }
 
       const url = isEditing
-        ? "/server/domaine/updatedomaines"
-        : "/server/domaine/adddomaines";
+      //  ? "/server/domaine/updatedomaines"
+        ? "/domaine/updatedomaines"
+       // : "/server/domaine/adddomaines";
+        : "/domaine/adddomaines";
      const response =  await fetch(url, {
         method: isEditing ? "PUT" : "POST",
         headers: {
@@ -310,7 +313,8 @@ const Domaine = () => {
             {console.log("server/images/" + selectedImage)}
               {selectedImage && (
                 <img
-                  src={"server/images/" + selectedImage}
+                //  src={"server/images/" + selectedImage}
+                  src={"/images/" + selectedImage}
                   
                   alt="icone du domaine"
                   style={{ maxWidth: "100%" }}

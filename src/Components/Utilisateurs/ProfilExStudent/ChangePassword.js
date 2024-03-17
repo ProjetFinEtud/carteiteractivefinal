@@ -49,7 +49,8 @@ const ChangePassword = () => {
 
 
     try {
-      const response = await fetch("/server/user/updatexspass", {
+     // const response = await fetch("/server/user/updatexspass", {
+      const response = await fetch("/user/updatexspass", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

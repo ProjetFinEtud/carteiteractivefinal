@@ -31,7 +31,8 @@ function App() {
     const fetchData = async () => {
       try {
         const responseUsers = await fetch(
-          "/server/user/usersExstudentActived",
+          //"/server/user/usersExstudentActived",
+          "/user/usersExstudentActived",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -66,7 +67,8 @@ function App() {
         setData(newData);
         setFilteredUsers(newData);
         const responseDomaines = await fetch(
-          "/server/user/allDomaines",
+          //"/server/user/allDomaines",
+          "/user/allDomaines",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -88,7 +90,8 @@ function App() {
         }));
         setDataDomaine(newDataDomaine);
         const responsePostes = await fetch(
-          "/server/user/allPrePostes",
+          //"/server/user/allPrePostes",
+          "/poste/allPrePostes",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -169,7 +172,8 @@ function App() {
   const handleSendAsk = async (id) => {
     const exs_id = id;
     try {
-      const url = "/server/user/sendask";
+      //const url = "/server/user/sendask";
+      const url = "/contact/sendask";
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -233,7 +237,8 @@ function App() {
         <MarkerClusterGroup chunkedLoading>
           {filteredUsers.map((item) => {
             const customIcon = new L.Icon({
-              iconUrl: "server/images/" + item.icone,
+             // iconUrl: "server/images/" + item.icone,
+              iconUrl: "/images/" + item.icone,
               iconSize: [38, 38],
               iconAnchor: [32, 32],
               popupAnchor: [0, -32],
@@ -271,7 +276,8 @@ function App() {
             position={[selectedMarkerPosition.lat, selectedMarkerPosition.lon]}
             icon={
               new L.Icon({
-                iconUrl: "server/images/" + selectedMarkerPosition.icone, 
+                //iconUrl: "server/images/" + selectedMarkerPosition.icone, 
+                iconUrl: "/images/" + selectedMarkerPosition.icone, 
                 iconSize: [50, 50],
                 iconAnchor: [32, 32],
                 popupAnchor: [0, -32],
@@ -311,7 +317,8 @@ function App() {
             <div className="d-flex text-black">
               <div className="flex-shrink-0">
                 <Avatar
-                  src={"server/images/" + selectedStudent.photo}
+                  //src={"server/images/" + selectedStudent.photo}
+                  src={"/images/" + selectedStudent.photo}
                   alt="Avatar"
                   className="rounded-circle"
                   style={{ width: 150, height: 150, objectFit: "cover" }}

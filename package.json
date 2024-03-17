@@ -41,8 +41,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://masteregel.alwaysdata.net/server",
-  "homepage": "//masteregel.alwaysdata.net/",
+  "proxy": "http://localhost:7000/",
+  "homepage": "http://localhost:3000/",
   "eslintConfig": {
     "extends": [
       "react-app",

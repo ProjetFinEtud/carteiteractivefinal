@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./Page/Register";
 import ForgotPassword from "./Components/Auth/ForgotPassword/ForgotPassword";
 import Connexion from "./Components/Auth/Login/Login";

@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
 
 const Review = ({ formData }) => {
   const { nom, prenom, email, master, annee, domaine, localisation, nom_poste, nom_entreprise, description, annee_debut, annee_fin } = formData;

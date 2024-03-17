@@ -26,7 +26,8 @@ export default function Activite({ onFieldChange,onFieldChangeShow, formData, er
     const fetchData = async () => {
       try {
         const responseMaster = await fetch(
-          "/server/auth/allMaster"
+          //"/server/auth/allMaster"
+          "/auth/allMaster"
         );
         const jsonData = await responseMaster.json();
         const newData = jsonData.columns.map((item) => ({
@@ -37,7 +38,8 @@ export default function Activite({ onFieldChange,onFieldChangeShow, formData, er
         setMasterOptions(newData);
 
         const responseDomaine = await fetch(
-          "/server/auth/allDomaine"
+          //"/server/auth/allDomaine"
+          "/auth/allDomaine"
         );
         const jsonData2 = await responseDomaine.json();
         const newDataIcone = jsonData2.columns.map((item) => ({

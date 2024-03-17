@@ -39,7 +39,8 @@ export default function Poste({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/server/auth/allPostes");
+        //const response = await fetch("/server/poste/allPostes");
+        const response = await fetch("/poste/allPostes");
         const responseJson = await response.json();
         setDataPoste(
           responseJson.postes.map((item) => ({

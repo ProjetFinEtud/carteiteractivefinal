@@ -14,7 +14,8 @@ const UserInfo = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch("/server/user/infoAdmin", {
+      //const response = await fetch("/server/user/infoAdmin", {
+      const response = await fetch("/user/infoAdmin", {
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
         },

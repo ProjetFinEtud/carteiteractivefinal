@@ -97,7 +97,10 @@ export default function Register() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseMaster = await fetch("/server/auth/allMaster");
+        //const responseMaster = await fetch("/server/auth/allMaster");
+        const responseMaster = await fetch("/auth/allMaster");
+
+        console.log("/auth/allMaster")
         const jsonData = await responseMaster.json();
         const newData = jsonData.columns.map((item) => ({
           mas_id: item.mas_id,
@@ -131,7 +134,8 @@ export default function Register() {
     if (!formIsValid) {
       return;
     } else {
-      const apiResponse = await fetch("/server/auth/createstudent", {
+      //const apiResponse = await fetch("/server/auth/createstudent", {
+      const apiResponse = await fetch("/auth/createstudent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

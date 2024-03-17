@@ -5,13 +5,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 const Poste = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [selectedPoste, setSelectedPoste] = useState(null);
   const [modifiedPoste, setModifiedPoste] = useState(null);
   const [prePostes, setPrePostes] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +24,8 @@ const Poste = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/server/user/allPostes", {
+       // const response = await fetch("/server/user/allPostes", {
+        const response = await fetch("/poste/allPostes", {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
@@ -61,7 +60,8 @@ const Poste = () => {
 
     const fetchPrePostes = async () => {
       try {
-        const response = await fetch("/server/user/allPrePostes", {
+       // const response = await fetch("/server/user/allPrePostes", {
+        const response = await fetch("/user/allPrePostes", {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
@@ -123,8 +123,10 @@ const Poste = () => {
       }
 
       const url = isEditing
-        ? `/server/user/updateposte/${modifiedPoste.id}`
-        : "/server/user/createposte";
+      //  ? `/server/user/updateposte/${modifiedPoste.id}`
+        ? `/poste/updateposte/${modifiedPoste.id}`
+      //  : "/server/user/createposte";
+        : "/poste/createposte";
       const method = isEditing ? "PUT" : "POST";
 
       const response = await fetch(url, {
@@ -155,13 +157,11 @@ const Poste = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setSelectedPoste(null);
     setModifiedPoste(null);
     setIsEditing(false);
   };
 
   const handleEdit = (poste) => {
-    setSelectedPoste(poste);
     setModifiedPoste({ ...poste });
     setShowModal(true);
     setIsEditing(true);

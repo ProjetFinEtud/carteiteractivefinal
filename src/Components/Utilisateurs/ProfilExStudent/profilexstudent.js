@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import CreatePoste from "./CreatePoste"; 
-import Postes from "./Postes"; 
+import Poste from "./Poste"; 
 import UserInfo from "./UserInfo"; 
 import ChangePassword from "./ChangePassword"; 
 import DeleteExstudent from "./DeleteExstudent"
@@ -24,14 +23,13 @@ const ProfilExStudent = () => {
     >
       <Tabs value={tabValue} onChange={handleTabChange}>
         <Tab value="userInfo" label="Vos informations" />
-        <Tab value="createposte" label="Postes" />
+        <Tab value="postes" label="Postes" />
         <Tab value="localisation" label="Changer votre localisation" />
         <Tab value="password" label="Changer le mot de passe" />
         <Tab value="delete" label="Supprimer votre compte" />
       </Tabs>
       {tabValue === "password" && <ChangePassword />}
-      {tabValue === "createposte" && <CreatePoste />}
-      {tabValue === "postes" && <Postes />}
+      {tabValue === "postes" && <Poste />}
       {tabValue === "delete" && <DeleteExstudent />}
       {tabValue === "localisation" && <ChangeLocalisation />}
       {tabValue === "userInfo" && <UserInfo />}

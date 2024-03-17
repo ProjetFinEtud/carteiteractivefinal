@@ -17,7 +17,8 @@ const Active = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "/server/user/usersActived",
+         // "/server/user/usersActived",
+          "/user/usersActived",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
@@ -39,7 +40,8 @@ const Active = () => {
         setData(jsonData);
 
         const responsePostes = await fetch(
-          "/server/user/allPrePostes",
+         // "/server/user/allPrePostes",
+          "/poste/allPrePostes",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),

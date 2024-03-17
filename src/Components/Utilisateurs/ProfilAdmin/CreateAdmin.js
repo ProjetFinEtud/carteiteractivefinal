@@ -27,7 +27,8 @@ const CreateAdmin = () => {
     }
 
     try {
-      const response = await fetch("/server/user/createadmin", {
+     // const response = await fetch("/server/user/createadmin", {
+      const response = await fetch("/user/createadmin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
