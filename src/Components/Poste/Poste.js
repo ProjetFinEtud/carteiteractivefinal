@@ -73,11 +73,13 @@ const PrePostePage = () => {
 
   const handleUpdate = async () => {
     try {
+      console.log("id poste " + selectedItem)
       const response = await fetch(`/server/poste/updatePreposte/${selectedItem}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           accessToken: sessionStorage.getItem("accessToken"),
+        
         },
         body: JSON.stringify({
           nom: newNom,
