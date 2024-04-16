@@ -98,7 +98,6 @@ export default function Register() {
     const fetchData = async () => {
       try {
         const responseMaster = await fetch("/server/auth/allMaster");
-        // const responseMaster = await fetch("/auth/allMaster");
 
         console.log("/auth/allMaster")
         const jsonData = await responseMaster.json();
@@ -134,8 +133,7 @@ export default function Register() {
     if (!formIsValid) {
       return;
     } else {
-      //const apiResponse = await fetch("/server/auth/createstudent", {
-      const apiResponse = await fetch("/auth/createstudent", {
+      const apiResponse = await fetch("/server/auth/createstudent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

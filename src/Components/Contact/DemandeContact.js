@@ -14,8 +14,7 @@ const DemandeContact = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-       // const response = await fetch("server/user/allRequestExsContact", {
-        const response = await fetch("/contact/allRequestExsContact", {
+       const response = await fetch("server/contact/allRequestExsContact", {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
@@ -59,8 +58,7 @@ const DemandeContact = () => {
     const id = deleteId;
     const msg_id = selectedMessageId;
     try {
-      //const response = await fetch(`server/user/deleteRequestContact/${id}`, {
-      const response = await fetch(`contact/deleteRequestContact/${id}`, {
+      const response = await fetch(`server/contact/deleteRequestContact/${id}`, {
         method: "DELETE",
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
@@ -104,8 +102,7 @@ const DemandeContact = () => {
 
   const handleAcceptRequest = async (id) => {
     try {
-     // const response = await fetch(`server/user/activateRequestContact/${id}`, {
-      const response = await fetch(`contact/activateRequestContact/${id}`, {
+      const response = await fetch(`server/contact/activateRequestContact/${id}`, {
         method: "PUT",
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
@@ -133,8 +130,7 @@ const DemandeContact = () => {
 
   const handleRejectRequest = async (id) => {
     try {
-      //const response = await fetch(`server/user/refusedRequestContact/${id}`, {
-      const response = await fetch(`contact/refusedRequestContact/${id}`, {
+      const response = await fetch(`server/contact/refusedRequestContact/${id}`, {
         method: "PUT",
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),

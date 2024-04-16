@@ -13,8 +13,7 @@ const UserInfo = () => {
 
   const fetchUserData = async () => {
     try {
-      //const response = await fetch("/server/user/infoStudent", {
-      const response = await fetch("/user/infoStudent", {
+      const response = await fetch("/server/user/infoStudent", {
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
         },

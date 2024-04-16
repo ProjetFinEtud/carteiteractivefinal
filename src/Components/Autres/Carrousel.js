@@ -9,8 +9,7 @@ function CarouselHome() {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const response = await fetch("/accueil/allAcc",
-       // const response = await fetch("/server/auth/allAcc",
+        const response = await fetch("/server/accueil/allAcc",
         {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),

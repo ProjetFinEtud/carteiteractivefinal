@@ -25,8 +25,7 @@ const Master = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-       // const response = await fetch("/server/master/allMaster", {
-        const response = await fetch("/master/allMaster", {
+       const response = await fetch("/server/master/allMaster", {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
@@ -105,10 +104,8 @@ const Master = () => {
       var id = null
 
       const url = isEditing
-      //  ? "/server/master/updatemaster"
-        ? "/master/updatemaster"
-       // : "/server/master/addmaster";
-        : "/master/addmaster";
+        ? "/server/master/updatemaster"
+        : "/server/master/addmaster";
       await fetch(url, {
         method: isEditing ? "PUT" : "POST",
         headers: {

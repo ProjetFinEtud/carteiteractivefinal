@@ -80,8 +80,7 @@ export default function Update() {
       console.log("Le formulaire n'est pas valide");
       return;
     } else {
-     // const apiResponse = await fetch("/server/auth/updatepass", {
-      const apiResponse = await fetch("/auth/updatepass", {
+      const apiResponse = await fetch("/server/auth/updatepass", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

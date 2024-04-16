@@ -182,8 +182,7 @@ export default function Register() {
   const handleValidation = async (event) => {
     event.preventDefault();
 
-    //const apiResponse = await fetch("/server/auth/createxStudent", {
-    const apiResponse = await fetch("/auth/createxStudent", {
+    const apiResponse = await fetch("/server/auth/createxStudent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

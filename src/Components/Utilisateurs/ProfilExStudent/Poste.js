@@ -24,8 +24,7 @@ const Poste = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-       // const response = await fetch("/server/user/allPostes", {
-        const response = await fetch("/poste/allPostes", {
+        const response = await fetch("/server/poste/allPostes", {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
@@ -60,8 +59,7 @@ const Poste = () => {
 
     const fetchPrePostes = async () => {
       try {
-       // const response = await fetch("/server/user/allPrePostes", {
-        const response = await fetch("/user/allPrePostes", {
+        const response = await fetch("/server/poste/allPrePostes", {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
@@ -123,10 +121,8 @@ const Poste = () => {
       }
 
       const url = isEditing
-      //  ? `/server/user/updateposte/${modifiedPoste.id}`
-        ? `/poste/updateposte/${modifiedPoste.id}`
-      //  : "/server/user/createposte";
-        : "/poste/createposte";
+       ? `/server/user/updateposte/${modifiedPoste.id}`
+       : "/server/user/createposte";
       const method = isEditing ? "PUT" : "POST";
 
       const response = await fetch(url, {

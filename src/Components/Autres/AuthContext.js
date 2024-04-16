@@ -11,8 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        //const response = await fetch("/server/auth/verifAuth", {
-        const response = await fetch("/auth/verifAuth", {
+        const response = await fetch("/server/auth/verifAuth", {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },

@@ -20,8 +20,7 @@ const UserInfo = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-       // const response = await fetch("/server/user/info", {
-        const response = await fetch("/user/info", {
+        const response = await fetch("/server/user/info", {
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
@@ -57,8 +56,7 @@ const UserInfo = () => {
       formData.append("exs_email", userData.exs_email);
       formData.append("exs_description", userData.exs_description);
 
-     // const response = await fetch("/server/user/updateinfo", {
-      const response = await fetch("/user/updateinfo", {
+      const response = await fetch("/server/user/updateinfo", {
         method: "PUT",
         headers: {
           accessToken: sessionStorage.getItem("accessToken"),
@@ -107,8 +105,7 @@ const UserInfo = () => {
     <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
       <Avatar
         alt="Avatar"
-       // src={"server/images/" + userData.exs_photo}
-        src={"/images/" + userData.exs_photo}
+       src={"server/images/" + userData.exs_photo}
         sx={{ width: 100, height: 100, marginRight: "10px" }}
       />
       <Button variant="contained" component="label">
