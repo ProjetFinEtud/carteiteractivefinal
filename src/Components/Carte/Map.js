@@ -66,7 +66,7 @@ function App() {
         setData(newData);
         setFilteredUsers(newData);
         const responseDomaines = await fetch(
-          "/server/auth/allDomaines",
+          "/server/auth/allDomaine",
           {
             headers: {
               accessToken: sessionStorage.getItem("accessToken"),
