@@ -41,12 +41,7 @@ export default function Poste({
       try {
         const response = await fetch("/server/poste/allPrePostes");
         const responseJson = await response.json();
-        setDataPoste(
-          responseJson.postes.map((item) => ({
-            pre_id: item.pre_post.pre_id,
-            pre_nom: item.pre_post.pre_nom,
-          }))
-        );
+        setDataPoste(responseJson.pre_post);
       } catch (error) {
         console.error("Erreur lors de la récupération des postes :", error);
       }
