@@ -43,8 +43,8 @@ export default function Poste({
         const responseJson = await response.json();
         setDataPoste(
           responseJson.postes.map((item) => ({
-            pre_id: item.pre_id,
-            pre_nom: item.pre_nom,
+            pre_id: item.pre_post.pre_id,
+            pre_nom: item.pre_post.pre_nom,
           }))
         );
       } catch (error) {
