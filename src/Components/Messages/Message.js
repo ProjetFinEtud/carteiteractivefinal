@@ -4,7 +4,6 @@ const Message = ({ pseudo, message, isUser }) => {
   return (
    
     <div className={isUser(pseudo) ? 'user-message' : 'not-user-message'}>
-      {console.log(isUser(pseudo))}
       {isUser(pseudo) ? (
         <p>{message}</p>
       ) : (

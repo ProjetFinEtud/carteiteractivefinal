@@ -60,7 +60,6 @@ const Domaine = () => {
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
-    console.log(files)
     if (files) {
       setModifiedDomaine((prevState) => ({
         ...prevState,
@@ -90,7 +89,6 @@ const Domaine = () => {
       newErrors.dom_nom = "";
     }
 
-    console.log(modifiedDomaine.dom_icon)
 
     if (!modifiedDomaine.dom_icone) {
       newErrors.dom_icone = "Veuillez importer une icone";
@@ -115,7 +113,6 @@ const Domaine = () => {
       if (!isEditing) {
         validation = validateForm();
         if (!validation) {
-          console.log("error");
           return;
         }
       }
@@ -307,7 +304,6 @@ const Domaine = () => {
               <Modal.Title>Icone</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            {console.log("server/images/" + selectedImage)}
               {selectedImage && (
                 <img
                   src={"server/images/" + selectedImage}

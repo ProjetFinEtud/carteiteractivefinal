@@ -33,7 +33,6 @@ const ExstudentContact = () => {
           exs_login: item.exs_login,
           stu_login: item.stu_login,
         }));
-        console.log(newData);
         setRequests(newData);
       } catch (error) {
         console.error(

@@ -99,7 +99,6 @@ export default function Register() {
       try {
         const responseMaster = await fetch("/server/auth/allMaster");
 
-        console.log("/auth/allMaster")
         const jsonData = await responseMaster.json();
         const newData = jsonData.columns.map((item) => ({
           mas_id: item.mas_id,

@@ -75,9 +75,7 @@ export default function Update() {
 
   const handleValidation = async () => {
     const formIsValid = validateForm();
-    console.log(formData)
     if (!formIsValid) {
-      console.log("Le formulaire n'est pas valide");
       return;
     } else {
       const apiResponse = await fetch("/server/auth/updatepass", {
@@ -100,7 +98,6 @@ export default function Update() {
         return;
       } else {
         const data = await apiResponse.json();
-        console.log(data)
         sessionStorage.setItem("accessToken", data.token);
         setValidation("Votre mot de passe à été changer avec succès")
         navigate("/connexion");

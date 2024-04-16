@@ -23,7 +23,6 @@ const UserInfo = () => {
         throw new Error("Erreur lors de la récupération des données");
       }
       const jsonData = await response.json();
-      console.log(jsonData);
       setUserData(jsonData);
     } catch (error) {
       console.error(

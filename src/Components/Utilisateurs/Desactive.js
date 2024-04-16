@@ -84,11 +84,8 @@ const Desactive = () => {
 
   const onActivate = useCallback(async (exs_id, stud_id, type) => {
     var id = null;
-    console.log(exs_id, stud_id);
     if (!exs_id) id = stud_id;
     else id = exs_id;
-    console.log(id);
-    console.log(type);
     try {
       const response = await fetch(`/server/user/activate`, {
         method: "PUT",
@@ -182,7 +179,6 @@ const Desactive = () => {
     try {
       const userPseudos = selectedStudents.map((student) => student.cpt_login);
 
-      console.log(userPseudos);
 
       const response = await fetch(
         `/server/user/activateUsers`,

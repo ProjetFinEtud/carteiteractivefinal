@@ -176,10 +176,7 @@ const Poste = () => {
   };
 
   const getNomPosteById = (postId) => {
-    console.log("postId:", postId);
-    console.log("prePostes:", prePostes);
     const poste = prePostes.find((poste) => poste.pre_id === postId);
-    console.log("poste trouvé:", poste);
     return poste ? poste.pre_nom : "";
   };
   

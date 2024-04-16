@@ -36,7 +36,6 @@ const StudentContact = () => {
           stu_login: item.stu_login,
           msg_id: item.msg_id,
         }));
-        console.log(newData);
         setRequests(newData);
       } catch (error) {
         console.error(
@@ -57,7 +56,6 @@ const StudentContact = () => {
 
   const changePage = (bolChange) => {
     setBol(bolChange);
-    console.log(bol);
   };
 
   const handleDelete = (msg_id, id) => {
@@ -88,7 +86,7 @@ const StudentContact = () => {
         .ref(`messages/${msg_id}`)
         .remove()
         .then(() => {
-          console.log("Demande supprimée avec succès");
+          //console.log("Demande supprimée avec succès");
         })
         .catch((error) =>
           console.error("Erreur lors de la suppression de la demande :", error)
