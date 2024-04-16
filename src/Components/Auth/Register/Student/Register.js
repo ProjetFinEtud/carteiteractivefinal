@@ -97,8 +97,8 @@ export default function Register() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        //const responseMaster = await fetch("/server/auth/allMaster");
-        const responseMaster = await fetch("/auth/allMaster");
+        const responseMaster = await fetch("/server/auth/allMaster");
+        // const responseMaster = await fetch("/auth/allMaster");
 
         console.log("/auth/allMaster")
         const jsonData = await responseMaster.json();
